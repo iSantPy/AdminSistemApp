@@ -5,12 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using ControlAguaPotable.Model;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
+using System.Configuration;
+using System.Data.SQLite;
 
 namespace ControlAguaPotable.Controller
 {
     internal class MainWindowController
     {
+        string connectionString = ConfigurationManager.ConnectionStrings["Connection"].ConnectionString;
+
         public decimal BIGGEST = DynamicConfig.GetFloat("Biggest");
         public decimal MEDIUM = DynamicConfig.GetFloat("Medium");
         public decimal MEDIUMSMALL = DynamicConfig.GetFloat("MediumSmall");
@@ -139,11 +142,11 @@ namespace ControlAguaPotable.Controller
             _dataTableBill.Rows.Add(row);
         }
 
-        public void InsertBillToDb(string type, string supplier, bool bsChecked)
+        public Bill CreateBill(string type, string supplier, bool bsChecked) 
         {
             Bill bill = new Bill();
 
-            bill.Date = DateTime.Now.ToString("dd/MM/yyyy");
+            bill.Date = DateTime.Now;
             bill.Type = type;
 
             if (bsChecked)
@@ -173,6 +176,7 @@ namespace ControlAguaPotable.Controller
                 {
                     BillDetail billDetail = new BillDetail()
                     {
+                        // billId must be setted when inserting a newbill into the db
                         Description = row["descripción"].ToString(),
                         Quantity = Convert.ToInt32(row["cantidad"]),
                         Amount = Math.Round(Convert.ToDecimal(row["precioUnitario"]) / EXCHANGERATE, 2)
@@ -186,6 +190,7 @@ namespace ControlAguaPotable.Controller
                 {
                     BillDetail billDetail = new BillDetail()
                     {
+                        // billId must be set when inserting a newbill into the db
                         Description = row["descripción"].ToString(),
                         Quantity = Convert.ToInt32(row["cantidad"]),
                         Amount = Math.Round(Convert.ToDecimal(row["precioUnitario"]), 2)
@@ -194,14 +199,58 @@ namespace ControlAguaPotable.Controller
                 }
             }
 
-            using (var context = new AppDbContext())
+            return bill;
+        }
+
+        public void InsertBillToDb(Bill newBill)
+        {
+            using (SQLiteConnection conn = new SQLiteConnection(connectionString))
             {
-                context.Bills.Add(bill);
-                context.SaveChanges();
+                conn.Open();
+
+                using (var transaction = conn.BeginTransaction())
+                {
+                    try
+                    {
+                        string query = "INSERT INTO Bills (date, type, amount, supplier, exchangeRate) VALUES (strftime('%s', @date), @type, @amount, @supplier, @exchangeRate)";
+                        using (SQLiteCommand cmd = new SQLiteCommand(query, conn))
+                        {
+                            cmd.Parameters.AddWithValue("@date", newBill.Date);
+                            cmd.Parameters.AddWithValue("@type", newBill.Type);
+                            cmd.Parameters.AddWithValue("@amount", newBill.Amount);
+                            cmd.Parameters.AddWithValue("@supplier", newBill.Supplier);
+                            cmd.Parameters.AddWithValue("@exchangeRate", newBill.ExchangeRate);
+                            cmd.ExecuteNonQuery();
+                            newBill.ID = (int)conn.LastInsertRowId;
+                        }
+
+                        foreach (var detail in newBill.Details)
+                        {
+                            detail.BillID = newBill.ID; 
+                            string detailQuery = "INSERT INTO BillsDetails (billID, description, quantity, amount) VALUES (@billID, @description, @quantity, @amount)";
+                            using (SQLiteCommand detailCmd = new SQLiteCommand(detailQuery, conn))
+                            {
+                                detailCmd.Parameters.AddWithValue("@billID", detail.BillID);
+                                detailCmd.Parameters.AddWithValue("@description", detail.Description); 
+                                detailCmd.Parameters.AddWithValue("@quantity", detail.Quantity); 
+                                detailCmd.Parameters.AddWithValue("@amount", detail.Amount);
+                                detailCmd.ExecuteNonQuery();
+                            }
+                        }
+
+                        transaction.Commit();
+                    }
+
+                    catch
+                    {
+                        transaction.Rollback();
+                        throw;
+                    }
+                }
             }
         }
 
-        public Dictionary<string, string> UpdatingIncomeAndWithdrawalCurrentDay()
+        public Dictionary<string, string> UpdatingIncomeAndWithdrawalCurrentDay() // change for using raw sqlite
         {
             Dictionary<string, string> dict = new Dictionary<string, string>();
 
@@ -210,43 +259,88 @@ namespace ControlAguaPotable.Controller
             decimal totalWithdrawalBs = 0;
             decimal totalWithdrawalDollars = 0;
 
-            using (var context = new AppDbContext())
+            DateTime today = DateTime.Today.Date;
+            List<int> sellIds = new List<int>();
+            List<decimal> amountsIncomeBs = new List<decimal>();
+            List<decimal> amountsIncomeDollars = new List<decimal>();
+            List<decimal> amountsWithdrawalBs = new List<decimal>();
+            List<decimal> amountsWithdrawalDollars = new List<decimal>();
+
+            using (SQLiteConnection conn = new SQLiteConnection(connectionString))
             {
-                string today = DateTime.Now.ToString("dd/MM/yyyy"); 
+                conn.Open();
 
-                var sellIds = context.Sells
-                    .Where(sell => sell.Date == today)
-                    .Select(sell => sell.ID)
-                    .ToList();
+                string querySellIds = "SELECT id, datetime(date, 'unixepoch') FROM Sells WHERE date(date, 'unixepoch') = date(@today);";
+                using (SQLiteCommand cmd = new SQLiteCommand(querySellIds, conn))
+                {
+                    cmd.Parameters.AddWithValue("@today", today);
+                    using (SQLiteDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            sellIds.Add(reader.GetInt32(0));
+                        }
+                    }
+                }
 
-                var amountsIncomeBs = context.IncomeBs
-                    .Where(income => sellIds.Contains(income.SellID))
-                    .Select(income => income.Amount)
-                    .ToList();
+                if (sellIds.Count > 0)
+                {
+                    string sellIdsString = string.Join(",", sellIds);
 
-                totalIncomeBs = amountsIncomeBs.Sum();
+                    string queryIncomeBs = $"SELECT amount FROM IncomeBs WHERE sellID IN ({sellIdsString})";
+                    using (SQLiteCommand cmd = new SQLiteCommand(queryIncomeBs, conn))
+                    {
+                        using (SQLiteDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                amountsIncomeBs.Add(reader.GetDecimal(0));
+                            }
+                        }
+                    }
 
-                var amountsIncomeDollars = context.IncomeDollars
-                    .Where(income => sellIds.Contains(income.SellID))
-                    .Select(income => income.Amount)
-                    .ToList();
+                    string queryIncomeDollars = $"SELECT amount FROM IncomeDollars WHERE sellID IN ({sellIdsString})";
+                    using (SQLiteCommand cmd = new SQLiteCommand(queryIncomeDollars, conn))
+                    {
+                        using (SQLiteDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                amountsIncomeDollars.Add(reader.GetDecimal(0));
+                            }
+                        }
+                    }
 
-                totalIncomeDollars = amountsIncomeDollars.Sum();
+                    string queryWithdrawalBs = $"SELECT amount FROM WithdrawalBs WHERE sellID IN ({sellIdsString})";
+                    using (SQLiteCommand cmd = new SQLiteCommand(queryWithdrawalBs, conn))
+                    {
+                        using (SQLiteDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                amountsWithdrawalBs.Add(reader.GetDecimal(0));
+                            }
+                        }
+                    }
 
-                var amountsWithdrawalBs = context.WithdrawalBs
-                    .Where(withdrawal => sellIds.Contains(withdrawal.SellID))
-                    .Select(withdrawal => withdrawal.Amount)
-                    .ToList();
-
-                totalWithdrawalBs = amountsWithdrawalBs.Sum();
-
-                var amountsWithdrawalDollars = context.WithdrawalDollars
-                    .Where(withdrawal => sellIds.Contains(withdrawal.SellID))
-                    .Select(withdrawal => withdrawal.Amount)
-                    .ToList();
-
-                totalWithdrawalDollars = amountsWithdrawalDollars.Sum();
+                    string queryWithdrawalDollars = $"SELECT amount FROM WithdrawalDollars WHERE sellID IN ({sellIdsString})";
+                    using (SQLiteCommand cmd = new SQLiteCommand(queryWithdrawalDollars, conn))
+                    {
+                        using (SQLiteDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                amountsWithdrawalDollars.Add(reader.GetDecimal(0));
+                            }
+                        }
+                    }
+                }
             }
+
+            totalIncomeBs = amountsIncomeBs.Sum();
+            totalIncomeDollars = amountsIncomeDollars.Sum();
+            totalWithdrawalBs = amountsWithdrawalBs.Sum();
+            totalWithdrawalDollars = amountsWithdrawalDollars.Sum();
 
             string incomeBs = totalIncomeBs.ToString();
             string incomeDollars = totalIncomeDollars.ToString();
@@ -261,55 +355,64 @@ namespace ControlAguaPotable.Controller
             return dict;
         }
 
-        public Dictionary<string, DataTable> PlottingCharts(string from, string to)
+        public Dictionary<string, DataTable> PlottingCharts(DateTime from, DateTime to)
         {
             Dictionary<string, DataTable> dictWithDataTables = new Dictionary<string, DataTable>();
 
             DataTable queryLitersDataTable = new DataTable();
-
-            using (var context = new AppDbContext())
-            {
-                var query = context.Sells
-                    .Where(value => string.Compare(value.Date, from) >= 0 && string.Compare(value.Date, to) <= 0)
-                    .GroupBy(x => x.Date)
-                    .Select(g => new
-                    {
-                        Date = g.Key,
-                        TotalLiters = g.Sum(x => (double)x.TotalLiters)
-                    })
-                    .ToList();
-
-                queryLitersDataTable.Columns.Add("Fecha", typeof(DateTime));
-                queryLitersDataTable.Columns.Add("Litros", typeof(double));
-
-                foreach (var item in query)
-                {
-                    DateTime date = DateTime.Parse(item.Date);
-                    queryLitersDataTable.Rows.Add(date, item.TotalLiters);
-                }
-            }
+            queryLitersDataTable.Columns.Add("Fecha", typeof(DateTime));
+            queryLitersDataTable.Columns.Add("Litros", typeof(double));
 
             DataTable queryMoneyDataTable = new DataTable();
+            queryMoneyDataTable.Columns.Add("Fecha", typeof(DateTime));
+            queryMoneyDataTable.Columns.Add("Dólares", typeof(double));
 
-            using (var context = new AppDbContext())
+            using (SQLiteConnection conn = new SQLiteConnection(connectionString))
             {
-                var query = context.Sells
-                    .Where(value => string.Compare(value.Date, from) >= 0 && string.Compare(value.Date, to) <= 0)
-                    .GroupBy(x => x.Date)
-                    .Select(g => new
-                    {
-                        Date = g.Key,
-                        Amount = g.Sum(x => (double)x.Amount)
-                    })
-                    .ToList();
+                conn.Open();
 
-                queryMoneyDataTable.Columns.Add("Fecha", typeof(DateTime));
-                queryMoneyDataTable.Columns.Add("Dólares", typeof(double));
+                string queryLiters = @"
+                    SELECT datetime(date, 'unixepoch') as date, SUM(totalLiters) AS TotalLiters
+                    FROM Sells
+                    WHERE date(date, 'unixepoch') >= date(@from) AND date(date, 'unixepoch') <= date(@to)
+                    GROUP BY date(date, 'unixepoch')";
 
-                foreach (var item in query)
+                using (SQLiteCommand cmdLiters = new SQLiteCommand(queryLiters, conn))
                 {
-                    DateTime date = DateTime.Parse(item.Date);
-                    queryMoneyDataTable.Rows.Add(date, item.Amount);
+                    cmdLiters.Parameters.AddWithValue("@from", from);
+                    cmdLiters.Parameters.AddWithValue("@to", to);
+
+                    using (SQLiteDataReader reader = cmdLiters.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            DateTime date = DateTime.Parse(reader["Date"].ToString());
+                            double totalLiters = Convert.ToDouble(reader["TotalLiters"]);
+                            queryLitersDataTable.Rows.Add(date, totalLiters);
+                        }
+                    }
+                }
+
+                string queryMoney = @"
+                    SELECT datetime(date, 'unixepoch') as date, SUM(Amount) AS Amount
+                    FROM Sells
+                    WHERE date(date, 'unixepoch') >= date(@from) AND date(date, 'unixepoch') <= date(@to)
+                    GROUP BY date(date, 'unixepoch')";
+
+                using (SQLiteCommand cmdMoney = new SQLiteCommand(queryMoney, conn))
+                {
+                    cmdMoney.Parameters.AddWithValue("@from", from);
+                    cmdMoney.Parameters.AddWithValue("@to", to);
+
+                    using (SQLiteDataReader reader = cmdMoney.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            DateTime date = DateTime.Parse(reader["Date"].ToString());
+                            double amount = Convert.ToDouble(reader["Amount"]);
+                            queryMoneyDataTable.Rows.Add(date, amount);
+                        }
+                    }
                 }
             }
 

@@ -1,0 +1,1 @@
+C:\Users\isDev\Documents\C#\aguaPotable\ControlAguaPotable\bin\Release\net8.0-windows\System.Data.SQLite.dll

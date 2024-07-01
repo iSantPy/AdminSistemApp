@@ -54,6 +54,11 @@
             settingsBtn = new Button();
             splitContainer4 = new SplitContainer();
             dataGridView = new DataGridView();
+            splitContainer5 = new SplitContainer();
+            tableLayoutPanel7 = new TableLayoutPanel();
+            buy = new Button();
+            reportsBtn = new Button();
+            inventoryBtn = new Button();
             tableLayoutPanel11 = new TableLayoutPanel();
             label13 = new Label();
             label14 = new Label();
@@ -108,8 +113,6 @@
             bsRadioBtn = new RadioButton();
             dollarsRadioButton = new RadioButton();
             toolTip1 = new ToolTip(components);
-            sqliteCommand1 = new Microsoft.Data.Sqlite.SqliteCommand();
-            sqliteCommand2 = new Microsoft.Data.Sqlite.SqliteCommand();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
@@ -122,6 +125,11 @@
             splitContainer4.Panel2.SuspendLayout();
             splitContainer4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)splitContainer5).BeginInit();
+            splitContainer5.Panel1.SuspendLayout();
+            splitContainer5.Panel2.SuspendLayout();
+            splitContainer5.SuspendLayout();
+            tableLayoutPanel7.SuspendLayout();
             tableLayoutPanel11.SuspendLayout();
             tabPage2.SuspendLayout();
             tableLayoutPanel10.SuspendLayout();
@@ -288,7 +296,7 @@
             // 
             // splitContainer4.Panel2
             // 
-            splitContainer4.Panel2.Controls.Add(tableLayoutPanel11);
+            splitContainer4.Panel2.Controls.Add(splitContainer5);
             splitContainer4.Size = new Size(1390, 971);
             splitContainer4.SplitterDistance = 320;
             splitContainer4.TabIndex = 0;
@@ -333,9 +341,77 @@
             dataGridView.Size = new Size(1390, 320);
             dataGridView.TabIndex = 0;
             // 
+            // splitContainer5
+            // 
+            splitContainer5.Dock = DockStyle.Fill;
+            splitContainer5.Location = new Point(0, 0);
+            splitContainer5.Name = "splitContainer5";
+            // 
+            // splitContainer5.Panel1
+            // 
+            splitContainer5.Panel1.Controls.Add(tableLayoutPanel7);
+            // 
+            // splitContainer5.Panel2
+            // 
+            splitContainer5.Panel2.Controls.Add(tableLayoutPanel11);
+            splitContainer5.Size = new Size(1390, 647);
+            splitContainer5.SplitterDistance = 463;
+            splitContainer5.TabIndex = 1;
+            // 
+            // tableLayoutPanel7
+            // 
+            tableLayoutPanel7.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            tableLayoutPanel7.ColumnCount = 1;
+            tableLayoutPanel7.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel7.Controls.Add(buy, 0, 0);
+            tableLayoutPanel7.Controls.Add(reportsBtn, 0, 1);
+            tableLayoutPanel7.Controls.Add(inventoryBtn, 0, 2);
+            tableLayoutPanel7.Location = new Point(108, 115);
+            tableLayoutPanel7.Name = "tableLayoutPanel7";
+            tableLayoutPanel7.RowCount = 3;
+            tableLayoutPanel7.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
+            tableLayoutPanel7.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
+            tableLayoutPanel7.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
+            tableLayoutPanel7.Size = new Size(242, 480);
+            tableLayoutPanel7.TabIndex = 0;
+            // 
+            // buy
+            // 
+            buy.Dock = DockStyle.Fill;
+            buy.Image = Properties.Resources.transaccion;
+            buy.Location = new Point(3, 3);
+            buy.Name = "buy";
+            buy.Size = new Size(236, 153);
+            buy.TabIndex = 0;
+            toolTip1.SetToolTip(buy, "Venta de items");
+            buy.UseVisualStyleBackColor = true;
+            buy.Click += buy_Click;
+            // 
+            // reportsBtn
+            // 
+            reportsBtn.Dock = DockStyle.Fill;
+            reportsBtn.Image = Properties.Resources.abajo;
+            reportsBtn.Location = new Point(3, 162);
+            reportsBtn.Name = "reportsBtn";
+            reportsBtn.Size = new Size(236, 153);
+            reportsBtn.TabIndex = 1;
+            toolTip1.SetToolTip(reportsBtn, "Generar reporte de ventas");
+            reportsBtn.UseVisualStyleBackColor = true;
+            // 
+            // inventoryBtn
+            // 
+            inventoryBtn.Dock = DockStyle.Fill;
+            inventoryBtn.Image = Properties.Resources.inventario;
+            inventoryBtn.Location = new Point(3, 321);
+            inventoryBtn.Name = "inventoryBtn";
+            inventoryBtn.Size = new Size(236, 156);
+            inventoryBtn.TabIndex = 2;
+            toolTip1.SetToolTip(inventoryBtn, "Inventario de items");
+            inventoryBtn.UseVisualStyleBackColor = true;
+            // 
             // tableLayoutPanel11
             // 
-            tableLayoutPanel11.Anchor = AnchorStyles.None;
+            tableLayoutPanel11.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             tableLayoutPanel11.ColumnCount = 2;
             tableLayoutPanel11.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel11.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
@@ -345,13 +421,13 @@
             tableLayoutPanel11.Controls.Add(litersNumberLabel, 1, 1);
             tableLayoutPanel11.Controls.Add(clnBtn, 0, 2);
             tableLayoutPanel11.Controls.Add(registerBtn, 1, 2);
-            tableLayoutPanel11.Location = new Point(281, 162);
+            tableLayoutPanel11.Location = new Point(47, 115);
             tableLayoutPanel11.Name = "tableLayoutPanel11";
             tableLayoutPanel11.RowCount = 3;
             tableLayoutPanel11.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
             tableLayoutPanel11.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
             tableLayoutPanel11.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
-            tableLayoutPanel11.Size = new Size(814, 316);
+            tableLayoutPanel11.Size = new Size(842, 395);
             tableLayoutPanel11.TabIndex = 0;
             // 
             // label13
@@ -360,7 +436,7 @@
             label13.AutoSize = true;
             label13.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold);
             label13.ForeColor = Color.Red;
-            label13.Location = new Point(95, 33);
+            label13.Location = new Point(102, 46);
             label13.Name = "label13";
             label13.Size = new Size(216, 38);
             label13.TabIndex = 0;
@@ -372,7 +448,7 @@
             label14.AutoSize = true;
             label14.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold);
             label14.ForeColor = Color.Blue;
-            label14.Location = new Point(154, 138);
+            label14.Location = new Point(161, 177);
             label14.Name = "label14";
             label14.Size = new Size(98, 38);
             label14.TabIndex = 1;
@@ -384,7 +460,7 @@
             totalNumberLabel.AutoSize = true;
             totalNumberLabel.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold);
             totalNumberLabel.ForeColor = Color.Red;
-            totalNumberLabel.Location = new Point(580, 33);
+            totalNumberLabel.Location = new Point(601, 46);
             totalNumberLabel.Name = "totalNumberLabel";
             totalNumberLabel.Size = new Size(61, 38);
             totalNumberLabel.TabIndex = 2;
@@ -396,7 +472,7 @@
             litersNumberLabel.AutoSize = true;
             litersNumberLabel.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold);
             litersNumberLabel.ForeColor = Color.Blue;
-            litersNumberLabel.Location = new Point(594, 138);
+            litersNumberLabel.Location = new Point(615, 177);
             litersNumberLabel.Name = "litersNumberLabel";
             litersNumberLabel.Size = new Size(33, 38);
             litersNumberLabel.TabIndex = 3;
@@ -407,9 +483,9 @@
             clnBtn.BackColor = SystemColors.ActiveCaption;
             clnBtn.Dock = DockStyle.Fill;
             clnBtn.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold);
-            clnBtn.Location = new Point(3, 213);
+            clnBtn.Location = new Point(3, 265);
             clnBtn.Name = "clnBtn";
-            clnBtn.Size = new Size(401, 100);
+            clnBtn.Size = new Size(415, 127);
             clnBtn.TabIndex = 4;
             clnBtn.Text = "Limpiar";
             clnBtn.UseVisualStyleBackColor = false;
@@ -419,9 +495,9 @@
             registerBtn.BackColor = SystemColors.ActiveCaption;
             registerBtn.Dock = DockStyle.Fill;
             registerBtn.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold);
-            registerBtn.Location = new Point(410, 213);
+            registerBtn.Location = new Point(424, 265);
             registerBtn.Name = "registerBtn";
-            registerBtn.Size = new Size(401, 100);
+            registerBtn.Size = new Size(415, 127);
             registerBtn.TabIndex = 5;
             registerBtn.Text = "Registrar";
             registerBtn.UseVisualStyleBackColor = false;
@@ -429,10 +505,10 @@
             // tabPage2
             // 
             tabPage2.Controls.Add(tableLayoutPanel10);
-            tabPage2.Location = new Point(4, 37);
+            tabPage2.Location = new Point(4, 29);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(1642, 977);
+            tabPage2.Size = new Size(1642, 985);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Resumen y Gastos";
             tabPage2.UseVisualStyleBackColor = true;
@@ -449,7 +525,7 @@
             tableLayoutPanel10.Name = "tableLayoutPanel10";
             tableLayoutPanel10.RowCount = 1;
             tableLayoutPanel10.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel10.Size = new Size(1636, 971);
+            tableLayoutPanel10.Size = new Size(1636, 979);
             tableLayoutPanel10.TabIndex = 2;
             // 
             // groupBox1
@@ -458,7 +534,7 @@
             groupBox1.Dock = DockStyle.Fill;
             groupBox1.Location = new Point(575, 3);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(1058, 965);
+            groupBox1.Size = new Size(1058, 973);
             groupBox1.TabIndex = 1;
             groupBox1.TabStop = false;
             groupBox1.Text = "Resumen:";
@@ -478,7 +554,7 @@
             tableLayoutPanel4.RowCount = 2;
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel4.Size = new Size(1052, 932);
+            tableLayoutPanel4.Size = new Size(1052, 940);
             tableLayoutPanel4.TabIndex = 0;
             // 
             // splitContainer2
@@ -495,8 +571,8 @@
             // splitContainer2.Panel2
             // 
             splitContainer2.Panel2.Controls.Add(tableLayoutPanel5);
-            splitContainer2.Size = new Size(363, 460);
-            splitContainer2.SplitterDistance = 232;
+            splitContainer2.Size = new Size(363, 464);
+            splitContainer2.SplitterDistance = 234;
             splitContainer2.TabIndex = 0;
             // 
             // tableLayoutPanel12
@@ -509,13 +585,13 @@
             tableLayoutPanel12.Name = "tableLayoutPanel12";
             tableLayoutPanel12.RowCount = 1;
             tableLayoutPanel12.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel12.Size = new Size(363, 232);
+            tableLayoutPanel12.Size = new Size(363, 234);
             tableLayoutPanel12.TabIndex = 1;
             // 
             // monthCalendar
             // 
             monthCalendar.Anchor = AnchorStyles.None;
-            monthCalendar.Location = new Point(36, 12);
+            monthCalendar.Location = new Point(36, 13);
             monthCalendar.Name = "monthCalendar";
             monthCalendar.TabIndex = 0;
             // 
@@ -534,7 +610,7 @@
             tableLayoutPanel5.RowCount = 2;
             tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel5.Size = new Size(363, 224);
+            tableLayoutPanel5.Size = new Size(363, 226);
             tableLayoutPanel5.TabIndex = 0;
             // 
             // label6
@@ -553,7 +629,7 @@
             label7.Anchor = AnchorStyles.None;
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            label7.Location = new Point(18, 154);
+            label7.Location = new Point(18, 155);
             label7.Name = "label7";
             label7.Size = new Size(71, 28);
             label7.TabIndex = 1;
@@ -570,7 +646,7 @@
             // toTextBox
             // 
             toTextBox.Anchor = AnchorStyles.None;
-            toTextBox.Location = new Point(140, 151);
+            toTextBox.Location = new Point(140, 152);
             toTextBox.Name = "toTextBox";
             toTextBox.Size = new Size(191, 34);
             toTextBox.TabIndex = 3;
@@ -578,7 +654,7 @@
             // splitContainer3
             // 
             splitContainer3.Dock = DockStyle.Fill;
-            splitContainer3.Location = new Point(3, 469);
+            splitContainer3.Location = new Point(3, 473);
             splitContainer3.Name = "splitContainer3";
             splitContainer3.Orientation = Orientation.Horizontal;
             // 
@@ -589,7 +665,7 @@
             // splitContainer3.Panel2
             // 
             splitContainer3.Panel2.Controls.Add(tableLayoutPanel6);
-            splitContainer3.Size = new Size(363, 460);
+            splitContainer3.Size = new Size(363, 464);
             splitContainer3.SplitterDistance = 102;
             splitContainer3.TabIndex = 1;
             // 
@@ -626,7 +702,7 @@
             tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
             tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
             tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
-            tableLayoutPanel6.Size = new Size(363, 354);
+            tableLayoutPanel6.Size = new Size(363, 358);
             tableLayoutPanel6.TabIndex = 0;
             // 
             // label9
@@ -646,7 +722,7 @@
             label10.Anchor = AnchorStyles.None;
             label10.AutoSize = true;
             label10.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            label10.Location = new Point(49, 118);
+            label10.Location = new Point(49, 119);
             label10.Name = "label10";
             label10.Size = new Size(118, 28);
             label10.TabIndex = 1;
@@ -658,7 +734,7 @@
             label11.AutoSize = true;
             label11.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             label11.ForeColor = Color.FromArgb(0, 192, 0);
-            label11.Location = new Point(48, 206);
+            label11.Location = new Point(48, 208);
             label11.Name = "label11";
             label11.Size = new Size(120, 28);
             label11.TabIndex = 2;
@@ -669,7 +745,7 @@
             label12.Anchor = AnchorStyles.None;
             label12.AutoSize = true;
             label12.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            label12.Location = new Point(57, 295);
+            label12.Location = new Point(57, 298);
             label12.Name = "label12";
             label12.Size = new Size(102, 28);
             label12.TabIndex = 3;
@@ -692,7 +768,7 @@
             incomeBs.Anchor = AnchorStyles.None;
             incomeBs.AutoSize = true;
             incomeBs.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            incomeBs.Location = new Point(278, 118);
+            incomeBs.Location = new Point(278, 119);
             incomeBs.Name = "incomeBs";
             incomeBs.Size = new Size(24, 28);
             incomeBs.TabIndex = 5;
@@ -704,7 +780,7 @@
             withdrawalDollars.AutoSize = true;
             withdrawalDollars.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             withdrawalDollars.ForeColor = Color.FromArgb(0, 192, 0);
-            withdrawalDollars.Location = new Point(278, 206);
+            withdrawalDollars.Location = new Point(278, 208);
             withdrawalDollars.Name = "withdrawalDollars";
             withdrawalDollars.Size = new Size(24, 28);
             withdrawalDollars.TabIndex = 6;
@@ -715,7 +791,7 @@
             withdrawalBs.Anchor = AnchorStyles.None;
             withdrawalBs.AutoSize = true;
             withdrawalBs.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            withdrawalBs.Location = new Point(278, 295);
+            withdrawalBs.Location = new Point(278, 298);
             withdrawalBs.Name = "withdrawalBs";
             withdrawalBs.Size = new Size(24, 28);
             withdrawalBs.TabIndex = 7;
@@ -734,7 +810,7 @@
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             chart1.Series.Add(series1);
-            chart1.Size = new Size(677, 460);
+            chart1.Size = new Size(677, 464);
             chart1.TabIndex = 2;
             chart1.Text = "chart1";
             // 
@@ -745,13 +821,13 @@
             chart2.Dock = DockStyle.Fill;
             legend2.Name = "Legend1";
             chart2.Legends.Add(legend2);
-            chart2.Location = new Point(372, 469);
+            chart2.Location = new Point(372, 473);
             chart2.Name = "chart2";
             series2.ChartArea = "ChartArea1";
             series2.Legend = "Legend1";
             series2.Name = "Series1";
             chart2.Series.Add(series2);
-            chart2.Size = new Size(677, 460);
+            chart2.Size = new Size(677, 464);
             chart2.TabIndex = 3;
             chart2.Text = "chart2";
             // 
@@ -763,7 +839,7 @@
             groupBox2.Dock = DockStyle.Fill;
             groupBox2.Location = new Point(3, 3);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(566, 965);
+            groupBox2.Size = new Size(566, 973);
             groupBox2.TabIndex = 2;
             groupBox2.TabStop = false;
             groupBox2.Text = "Gasto Detallado:";
@@ -780,7 +856,7 @@
             tableLayoutPanel8.RowCount = 2;
             tableLayoutPanel8.RowStyles.Add(new RowStyle(SizeType.Percent, 73.14629F));
             tableLayoutPanel8.RowStyles.Add(new RowStyle(SizeType.Percent, 26.8537083F));
-            tableLayoutPanel8.Size = new Size(554, 499);
+            tableLayoutPanel8.Size = new Size(554, 507);
             tableLayoutPanel8.TabIndex = 3;
             // 
             // dataGridView1
@@ -806,7 +882,7 @@
             dataGridView1.Location = new Point(3, 3);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(548, 359);
+            dataGridView1.Size = new Size(548, 364);
             dataGridView1.TabIndex = 0;
             // 
             // tableLayoutPanel9
@@ -815,7 +891,7 @@
             tableLayoutPanel9.ColumnCount = 1;
             tableLayoutPanel9.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel9.Controls.Add(acceptBtn, 0, 0);
-            tableLayoutPanel9.Location = new Point(129, 375);
+            tableLayoutPanel9.Location = new Point(129, 381);
             tableLayoutPanel9.Name = "tableLayoutPanel9";
             tableLayoutPanel9.RowCount = 1;
             tableLayoutPanel9.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
@@ -931,6 +1007,7 @@
             // 
             qtyNumericUpDown.Anchor = AnchorStyles.None;
             qtyNumericUpDown.Location = new Point(283, 117);
+            qtyNumericUpDown.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
             qtyNumericUpDown.Name = "qtyNumericUpDown";
             qtyNumericUpDown.Size = new Size(274, 34);
             qtyNumericUpDown.TabIndex = 6;
@@ -942,6 +1019,7 @@
             unitaryPriceNumericUpDown.DecimalPlaces = 2;
             unitaryPriceNumericUpDown.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
             unitaryPriceNumericUpDown.Location = new Point(283, 163);
+            unitaryPriceNumericUpDown.Maximum = new decimal(new int[] { 100000000, 0, 0, 0 });
             unitaryPriceNumericUpDown.Name = "unitaryPriceNumericUpDown";
             unitaryPriceNumericUpDown.Size = new Size(274, 34);
             unitaryPriceNumericUpDown.TabIndex = 7;
@@ -1029,20 +1107,6 @@
             dollarsRadioButton.Text = "Dólares";
             dollarsRadioButton.UseVisualStyleBackColor = true;
             // 
-            // sqliteCommand1
-            // 
-            sqliteCommand1.CommandTimeout = 30;
-            sqliteCommand1.Connection = null;
-            sqliteCommand1.Transaction = null;
-            sqliteCommand1.UpdatedRowSource = System.Data.UpdateRowSource.None;
-            // 
-            // sqliteCommand2
-            // 
-            sqliteCommand2.CommandTimeout = 30;
-            sqliteCommand2.Connection = null;
-            sqliteCommand2.Transaction = null;
-            sqliteCommand2.UpdatedRowSource = System.Data.UpdateRowSource.None;
-            // 
             // MainWindow
             // 
             AutoScaleDimensions = new SizeF(120F, 120F);
@@ -1068,6 +1132,11 @@
             ((System.ComponentModel.ISupportInitialize)splitContainer4).EndInit();
             splitContainer4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView).EndInit();
+            splitContainer5.Panel1.ResumeLayout(false);
+            splitContainer5.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)splitContainer5).EndInit();
+            splitContainer5.ResumeLayout(false);
+            tableLayoutPanel7.ResumeLayout(false);
             tableLayoutPanel11.ResumeLayout(false);
             tableLayoutPanel11.PerformLayout();
             tabPage2.ResumeLayout(false);
@@ -1109,8 +1178,6 @@
         private TabPage tabPage1;
         private TabPage tabPage2;
         private ToolTip toolTip1;
-        private Microsoft.Data.Sqlite.SqliteCommand sqliteCommand1;
-        private Microsoft.Data.Sqlite.SqliteCommand sqliteCommand2;
         private TableLayoutPanel tableLayoutPanel10;
         private GroupBox groupBox1;
         private TableLayoutPanel tableLayoutPanel4;
@@ -1173,5 +1240,10 @@
         private MonthCalendar monthCalendar;
         private Button clnBtnBill;
         private Button addBtn;
+        private SplitContainer splitContainer5;
+        private TableLayoutPanel tableLayoutPanel7;
+        private Button buy;
+        private Button reportsBtn;
+        private Button inventoryBtn;
     }
 }

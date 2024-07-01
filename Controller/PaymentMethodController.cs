@@ -1,130 +1,73 @@
-﻿using Microsoft.EntityFrameworkCore.Storage.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ControlAguaPotable.Model;
 using System.Data;
+using System.Configuration;
+using System.Data.SQLite;
 
 namespace ControlAguaPotable.Controller
 {
     internal class PaymentMethodController
     {
-        public void RegisterSellAndSellDetail(DataTable dt, decimal bs, decimal dollars, decimal withdrawalBs, decimal withdrawalDollars, decimal dollarAmount, decimal exchangeRate)
+        string connectionString = ConfigurationManager.ConnectionStrings["Connection"].ConnectionString;
+        public Sell CreateSellAndDetails(DataTable dt, decimal bs, decimal dollars, decimal withdrawalBs, decimal withdrawalDollars, decimal dollarAmount, decimal exchangeRate)
         {
             decimal totalLiters = dt.AsEnumerable().Sum(row => row.Field<decimal>("litrosTotal"));
 
-            var newSell = new Sell();
+            Sell newSell = new Sell();
+            newSell.Date = DateTime.Now;
+            newSell.TotalLiters = totalLiters;
+            newSell.Amount = dollarAmount;
+            newSell.ExchangeRate = exchangeRate;
+
+            foreach (DataRow row in dt.Rows)
+            {
+                int qty = Convert.ToInt32(row["cantidad"]);
+
+                if (qty != 0)
+                {
+                    SellDetail sellDetail = new SellDetail()
+                    {
+                        // sellId must be set when calling the method to insert the values
+                        Quantity = qty,
+                        Presentation = Convert.ToDecimal(row["presentación"]),
+                        UnitaryPrice = Convert.ToDecimal(row["precioUnitario"])
+                    };
+                    newSell.Details.Add(sellDetail);
+                }
+            }
 
             if (bs != 0 && dollars == 0) // only bs
             {
-                // no withdrawal
-                if (withdrawalBs == 0 && withdrawalDollars == 0)
+                newSell.IncomeBs = new IncomeBs
                 {
-                    newSell.Date = DateTime.Now.ToString("dd/MM/yyyy");
-                    newSell.TotalLiters = totalLiters;
-                    newSell.Amount = dollarAmount;
-                    newSell.ExchangeRate = exchangeRate;
-                    newSell.IncomeBs = new IncomeBs
-                    {
-                        Amount = bs
-                    };
-
-                    foreach (DataRow row in dt.Rows)
-                    {
-                        int qty = Convert.ToInt32(row["cantidad"]);
-
-                        if (qty != 0)
-                        {
-                            SellDetail sellDetail = new SellDetail()
-                            {
-                                Quantity = qty,
-                                Presentation = Convert.ToDecimal(row["presentación"]),
-                                UnitaryPrice = Convert.ToDecimal(row["precioUnitario"])
-                            };
-                            newSell.Details.Add(sellDetail);
-                        }
-                    }
-                }
+                    Amount = bs
+                };
 
                 // bs withdrawal only
-                else if (withdrawalBs != 0 && withdrawalDollars == 0)
+                if (withdrawalBs != 0 && withdrawalDollars == 0)
                 {
-                    newSell.Date = DateTime.Now.ToString("dd/MM/yyyy");
-                    newSell.TotalLiters = totalLiters;
-                    newSell.Amount = dollarAmount;
-                    newSell.ExchangeRate = exchangeRate;
-                    newSell.IncomeBs = new IncomeBs
-                    {
-                        Amount = bs
-                    };
                     newSell.WithdrawalBs = new WithdrawalBs
                     {
                         Amount = withdrawalBs
                     };
-
-                    foreach (DataRow row in dt.Rows)
-                    {
-                        int qty = Convert.ToInt32(row["cantidad"]);
-
-                        if (qty != 0)
-                        {
-                            SellDetail sellDetail = new SellDetail()
-                            {
-                                Quantity = qty,
-                                Presentation = Convert.ToDecimal(row["presentación"]),
-                                UnitaryPrice = Convert.ToDecimal(row["precioUnitario"])
-                            };
-                            newSell.Details.Add(sellDetail);
-                        }
-                    }
                 }
 
                 // dollars withdrawal only
                 else if (withdrawalBs == 0 && withdrawalDollars != 0)
                 {
-                    newSell.Date = DateTime.Now.ToString("dd/MM/yyyy");
-                    newSell.TotalLiters = totalLiters;
-                    newSell.Amount = dollarAmount;
-                    newSell.ExchangeRate = exchangeRate;
-                    newSell.IncomeBs = new IncomeBs
-                    {
-                        Amount = bs
-                    };
                     newSell.WithdrawalDollars = new WithdrawalDollars
                     {
                         Amount = withdrawalDollars
                     };
-
-                    foreach (DataRow row in dt.Rows)
-                    {
-                        int qty = Convert.ToInt32(row["cantidad"]);
-
-                        if (qty != 0)
-                        {
-                            SellDetail sellDetail = new SellDetail()
-                            {
-                                Quantity = qty,
-                                Presentation = Convert.ToDecimal(row["presentación"]),
-                                UnitaryPrice = Convert.ToDecimal(row["precioUnitario"])
-                            };
-                            newSell.Details.Add(sellDetail);
-                        }
-                    }
                 }
 
                 // bs + dollar withdrawals
                 else if (withdrawalBs != 0 && withdrawalDollars != 0)
                 {
-                    newSell.Date = DateTime.Now.ToString("dd/MM/yyyy");
-                    newSell.TotalLiters = totalLiters;
-                    newSell.Amount = dollarAmount;
-                    newSell.ExchangeRate = exchangeRate;
-                    newSell.IncomeBs = new IncomeBs
-                    {
-                        Amount = bs
-                    };
                     newSell.WithdrawalBs = new WithdrawalBs
                     {
                         Amount = withdrawalBs
@@ -133,132 +76,37 @@ namespace ControlAguaPotable.Controller
                     {
                         Amount = withdrawalDollars
                     };
-
-                    foreach (DataRow row in dt.Rows)
-                    {
-                        int qty = Convert.ToInt32(row["cantidad"]);
-
-                        if (qty != 0)
-                        {
-                            SellDetail sellDetail = new SellDetail()
-                            {
-                                Quantity = qty,
-                                Presentation = Convert.ToDecimal(row["presentación"]),
-                                UnitaryPrice = Convert.ToDecimal(row["precioUnitario"])
-                            };
-                            newSell.Details.Add(sellDetail);
-                        }
-                    }
                 }
             }
+
             else if (bs == 0 && dollars != 0) // only dollars
             {
-                // no withdrawal
-                if (withdrawalBs == 0 && withdrawalDollars == 0)
+                newSell.IncomeDollars = new IncomeDollars
                 {
-                    newSell.Date = DateTime.Now.ToString("dd/MM/yyyy");
-                    newSell.TotalLiters = totalLiters;
-                    newSell.Amount = dollarAmount;
-                    newSell.ExchangeRate = exchangeRate;
-                    newSell.IncomeDollars = new IncomeDollars
-                    {
-                        Amount = dollars
-                    };
-
-                    foreach (DataRow row in dt.Rows)
-                    {
-                        int qty = Convert.ToInt32(row["cantidad"]);
-
-                        if (qty != 0)
-                        {
-                            SellDetail sellDetail = new SellDetail()
-                            {
-                                Quantity = qty,
-                                Presentation = Convert.ToDecimal(row["presentación"]),
-                                UnitaryPrice = Convert.ToDecimal(row["precioUnitario"])
-                            };
-                            newSell.Details.Add(sellDetail);
-                        }
-                    }
-                }
+                    Amount = dollars
+                };
 
                 // bs withdrawal only
-                else if (withdrawalBs != 0 && withdrawalDollars == 0)
+                if (withdrawalBs != 0 && withdrawalDollars == 0)
                 {
-                    newSell.Date = DateTime.Now.ToString("dd/MM/yyyy");
-                    newSell.TotalLiters = totalLiters;
-                    newSell.Amount = dollarAmount;
-                    newSell.ExchangeRate = exchangeRate;
-                    newSell.IncomeDollars = new IncomeDollars
-                    {
-                        Amount = dollars
-                    };
                     newSell.WithdrawalBs = new WithdrawalBs
                     {
                         Amount = withdrawalBs
                     };
-
-                    foreach (DataRow row in dt.Rows)
-                    {
-                        int qty = Convert.ToInt32(row["cantidad"]);
-
-                        if (qty != 0)
-                        {
-                            SellDetail sellDetail = new SellDetail()
-                            {
-                                Quantity = qty,
-                                Presentation = Convert.ToDecimal(row["presentación"]),
-                                UnitaryPrice = Convert.ToDecimal(row["precioUnitario"])
-                            };
-                            newSell.Details.Add(sellDetail);
-                        }
-                    }
                 }
 
                 // dollars withdrawal only
                 else if (withdrawalBs == 0 && withdrawalDollars != 0)
                 {
-                    newSell.Date = DateTime.Now.ToString("dd/MM/yyyy");
-                    newSell.TotalLiters = totalLiters;
-                    newSell.Amount = dollarAmount;
-                    newSell.ExchangeRate = exchangeRate;
-                    newSell.IncomeDollars = new IncomeDollars
-                    {
-                        Amount = dollars
-                    };
                     newSell.WithdrawalDollars = new WithdrawalDollars
                     {
                         Amount = withdrawalDollars
                     };
-
-                    foreach (DataRow row in dt.Rows)
-                    {
-                        int qty = Convert.ToInt32(row["cantidad"]);
-
-                        if (qty != 0)
-                        {
-                            SellDetail sellDetail = new SellDetail()
-                            {
-                                Quantity = qty,
-                                Presentation = Convert.ToDecimal(row["presentación"]),
-                                UnitaryPrice = Convert.ToDecimal(row["precioUnitario"])
-                            };
-                            newSell.Details.Add(sellDetail);
-                        }
-                    }
                 }
 
                 // bs + dollar withdrawals
                 else if (withdrawalBs != 0 && withdrawalDollars != 0)
                 {
-                    newSell.Date = DateTime.Now.ToString("dd/MM/yyyy");
-                    newSell.TotalLiters = totalLiters;
-                    newSell.Amount = dollarAmount;
-                    newSell.ExchangeRate = exchangeRate;
-                    newSell.IncomeDollars = new IncomeDollars
-                    {
-                        Amount = dollars
-                    };
                     newSell.WithdrawalBs = new WithdrawalBs
                     {
                         Amount = withdrawalBs
@@ -267,149 +115,41 @@ namespace ControlAguaPotable.Controller
                     {
                         Amount = withdrawalDollars
                     };
-
-                    foreach (DataRow row in dt.Rows)
-                    {
-                        int qty = Convert.ToInt32(row["cantidad"]);
-
-                        if (qty != 0)
-                        {
-                            SellDetail sellDetail = new SellDetail()
-                            {
-                                Quantity = qty,
-                                Presentation = Convert.ToDecimal(row["presentación"]),
-                                UnitaryPrice = Convert.ToDecimal(row["precioUnitario"])
-                            };
-                            newSell.Details.Add(sellDetail);
-                        }
-                    }
                 }
-
             }
-            else // combination of bs and dollars
+
+            else // bs + dollars
             {
-                // no withdrawal
-                if (withdrawalBs ==0 && withdrawalBs == 0)
+                newSell.IncomeDollars = new IncomeDollars
                 {
-                    newSell.Date = DateTime.Now.ToString("dd/MM/yyyy");
-                    newSell.TotalLiters = totalLiters;
-                    newSell.Amount = dollarAmount;
-                    newSell.ExchangeRate = exchangeRate;
-                    newSell.IncomeDollars = new IncomeDollars
-                    {
-                        Amount = dollars
-                    };
-                    newSell.IncomeBs = new IncomeBs
-                    {
-                        Amount = bs
-                    };
-
-                    foreach (DataRow row in dt.Rows)
-                    {
-                        int qty = Convert.ToInt32(row["cantidad"]);
-
-                        if (qty != 0)
-                        {
-                            SellDetail sellDetail = new SellDetail()
-                            {
-                                Quantity = qty,
-                                Presentation = Convert.ToDecimal(row["presentación"]),
-                                UnitaryPrice = Convert.ToDecimal(row["precioUnitario"])
-                            };
-                            newSell.Details.Add(sellDetail);
-                        }
-                    }
-                }
+                    Amount = dollars
+                };
+                newSell.IncomeBs = new IncomeBs
+                {
+                    Amount = bs
+                };
 
                 // bs withdrawal only
-                else if (withdrawalBs != 0 && withdrawalDollars == 0)
+                if (withdrawalBs != 0 && withdrawalDollars == 0)
                 {
-                    newSell.Date = DateTime.Now.ToString("dd/MM/yyyy");
-                    newSell.TotalLiters = totalLiters;
-                    newSell.Amount = dollarAmount;
-                    newSell.ExchangeRate = exchangeRate;
-                    newSell.IncomeBs = new IncomeBs
-                    {
-                        Amount = bs
-                    };
-                    newSell.IncomeDollars = new IncomeDollars
-                    {
-                        Amount = dollars
-                    };
                     newSell.WithdrawalBs = new WithdrawalBs
                     {
                         Amount = withdrawalBs
                     };
-
-                    foreach (DataRow row in dt.Rows)
-                    {
-                        int qty = Convert.ToInt32(row["cantidad"]);
-
-                        if (qty != 0)
-                        {
-                            SellDetail sellDetail = new SellDetail()
-                            {
-                                Quantity = qty,
-                                Presentation = Convert.ToDecimal(row["presentación"]),
-                                UnitaryPrice = Convert.ToDecimal(row["precioUnitario"])
-                            };
-                            newSell.Details.Add(sellDetail);
-                        }
-                    }
                 }
 
                 // dollars withdrawal only
                 else if (withdrawalBs == 0 && withdrawalDollars != 0)
                 {
-                    newSell.Date = DateTime.Now.ToString("dd/MM/yyyy");
-                    newSell.TotalLiters = totalLiters;
-                    newSell.Amount = dollarAmount;
-                    newSell.ExchangeRate = exchangeRate;
-                    newSell.IncomeBs = new IncomeBs
-                    {
-                        Amount = bs
-                    };
-                    newSell.IncomeDollars = new IncomeDollars
-                    {
-                        Amount = dollars
-                    };
                     newSell.WithdrawalDollars = new WithdrawalDollars
                     {
                         Amount = withdrawalDollars
                     };
-
-                    foreach (DataRow row in dt.Rows)
-                    {
-                        int qty = Convert.ToInt32(row["cantidad"]);
-
-                        if (qty != 0)
-                        {
-                            SellDetail sellDetail = new SellDetail()
-                            {
-                                Quantity = qty,
-                                Presentation = Convert.ToDecimal(row["presentación"]),
-                                UnitaryPrice = Convert.ToDecimal(row["precioUnitario"])
-                            };
-                            newSell.Details.Add(sellDetail);
-                        }
-                    }
                 }
 
                 // bs + dollar withdrawals
                 else if (withdrawalBs != 0 && withdrawalDollars != 0)
                 {
-                    newSell.Date = DateTime.Now.ToString("dd/MM/yyyy");
-                    newSell.TotalLiters = totalLiters;
-                    newSell.Amount = dollarAmount;
-                    newSell.ExchangeRate = exchangeRate;
-                    newSell.IncomeBs = new IncomeBs
-                    {
-                        Amount = bs
-                    };
-                    newSell.IncomeDollars = new IncomeDollars
-                    {
-                        Amount = dollars
-                    };
                     newSell.WithdrawalBs = new WithdrawalBs
                     {
                         Amount = withdrawalBs
@@ -418,30 +158,104 @@ namespace ControlAguaPotable.Controller
                     {
                         Amount = withdrawalDollars
                     };
+                }
+            }
 
-                    foreach (DataRow row in dt.Rows)
+            return newSell;
+        }
+
+        public void RegisterNewSell(Sell newSell)
+        {
+            using (SQLiteConnection conn = new SQLiteConnection(connectionString))
+            {
+                conn.Open();
+
+                using (var transaction = conn.BeginTransaction())
+                {
+                    try
                     {
-                        int qty = Convert.ToInt32(row["cantidad"]);
-
-                        if (qty != 0)
+                        string query = "INSERT INTO Sells (date, totalLiters, Amount, exchangeRate) VALUES (strftime('%s', @date), @totalLiters, @Amount, @exchangeRate)";
+                        using (SQLiteCommand cmd = new SQLiteCommand(query, conn))
                         {
-                            SellDetail sellDetail = new SellDetail()
-                            {
-                                Quantity = qty,
-                                Presentation = Convert.ToDecimal(row["presentación"]),
-                                UnitaryPrice = Convert.ToDecimal(row["precioUnitario"])
-                            };
-                            newSell.Details.Add(sellDetail);
+                            cmd.Parameters.AddWithValue("@date", newSell.Date);
+                            cmd.Parameters.AddWithValue("@totalLiters", newSell.TotalLiters);
+                            cmd.Parameters.AddWithValue("@Amount", newSell.Amount);
+                            cmd.Parameters.AddWithValue("@exchangeRate", newSell.ExchangeRate);
+                            cmd.ExecuteNonQuery();
+                            newSell.ID = (int)conn.LastInsertRowId;
                         }
+
+                        foreach (var detail in newSell.Details)
+                        {
+                            detail.SellID = newSell.ID; // setting sellId for details
+                            string detailQuery = "INSERT INTO SellsDetails (sellID, quantity, presentation, unitaryPrice) VALUES (@sellID, @quantity, @presentation, @unitaryPrice)";
+                            using (SQLiteCommand detailCmd = new SQLiteCommand(detailQuery, conn))
+                            {
+                                detailCmd.Parameters.AddWithValue("@sellID", detail.SellID);
+                                detailCmd.Parameters.AddWithValue("@quantity", detail.Quantity);
+                                detailCmd.Parameters.AddWithValue("@presentation", detail.Presentation);
+                                detailCmd.Parameters.AddWithValue("@unitaryPrice", detail.UnitaryPrice);
+                                detailCmd.ExecuteNonQuery();
+                            }
+                        }
+
+                        if (newSell.IncomeBs != null)
+                        {
+                            newSell.IncomeBs.SellID = newSell.ID; // setting sellId for details
+                            string incomeBsQuery = "INSERT INTO IncomeBs (sellID, amount) VALUES (@sellID, @amount)";
+                            using (SQLiteCommand incomeBsCmd = new SQLiteCommand(incomeBsQuery, conn))
+                            {
+                                incomeBsCmd.Parameters.AddWithValue("@sellID", newSell.IncomeBs.SellID);
+                                incomeBsCmd.Parameters.AddWithValue("@amount", newSell.IncomeBs.Amount);
+                                incomeBsCmd.ExecuteNonQuery();
+                            }
+                        }
+
+                        if (newSell.IncomeDollars != null)
+                        {
+                            newSell.IncomeDollars.SellID = newSell.ID; // setting sellId for details
+                            string incomeDollarsQuery = "INSERT INTO IncomeDollars (sellID, amount) VALUES (@sellID, @amount)";
+                            using (SQLiteCommand incomeDollarsCmd = new SQLiteCommand(incomeDollarsQuery, conn))
+                            {
+                                incomeDollarsCmd.Parameters.AddWithValue("@sellID", newSell.IncomeDollars.SellID);
+                                incomeDollarsCmd.Parameters.AddWithValue("@amount", newSell.IncomeDollars.Amount);
+                                incomeDollarsCmd.ExecuteNonQuery();
+                            }
+                        }
+
+                        if (newSell.WithdrawalBs != null)
+                        {
+                            newSell.WithdrawalBs.SellID = newSell.ID;
+                            string withdrawalBsQuery = "INSERT INTO WithdrawalBs (sellID, amount) VALUES (@sellID, @amount)";
+                            using (SQLiteCommand withdrawalBsCmd = new SQLiteCommand(withdrawalBsQuery, conn))
+                            {
+                                withdrawalBsCmd.Parameters.AddWithValue("@sellID", newSell.WithdrawalBs.SellID);
+                                withdrawalBsCmd.Parameters.AddWithValue("@amount", newSell.WithdrawalBs.Amount);
+                                withdrawalBsCmd.ExecuteNonQuery();
+                            }
+                        }
+
+                        if (newSell.WithdrawalDollars != null)
+                        {
+                            newSell.WithdrawalDollars.SellID = newSell.ID; // setting sellId for details
+                            string withdrawalDollarsQuery = "INSERT INTO WithdrawalDollars (sellID, amount) VALUES (@sellID, @amount)";
+                            using (SQLiteCommand withdrawalDollarsCmd = new SQLiteCommand(withdrawalDollarsQuery, conn))
+                            {
+                                withdrawalDollarsCmd.Parameters.AddWithValue("@sellID", newSell.WithdrawalDollars.SellID);
+                                withdrawalDollarsCmd.Parameters.AddWithValue("@amount", newSell.WithdrawalDollars.Amount);
+                                withdrawalDollarsCmd.ExecuteNonQuery();
+                            }
+                        }
+
+                        transaction.Commit();
+                    }
+
+                    catch
+                    {
+                        transaction.Rollback();
+                        throw;
                     }
                 }
-
-            }
-            
-            using (var context = new AppDbContext())
-            {
-                context.Sells.Add(newSell);
-                context.SaveChanges();
             }
         }
     }

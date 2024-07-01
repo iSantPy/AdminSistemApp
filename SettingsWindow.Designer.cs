@@ -71,8 +71,8 @@
             // 
             tableLayoutPanel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             tableLayoutPanel1.ColumnCount = 2;
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50.58997F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 49.41003F));
             tableLayoutPanel1.Controls.Add(biggestLabel, 0, 0);
             tableLayoutPanel1.Controls.Add(mediumLabel, 0, 1);
             tableLayoutPanel1.Controls.Add(mediumSmallLabel, 0, 2);
@@ -114,95 +114,95 @@
             biggestLabel.Anchor = AnchorStyles.Right;
             biggestLabel.AutoSize = true;
             biggestLabel.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            biggestLabel.Location = new Point(123, 9);
+            biggestLabel.Location = new Point(97, 9);
             biggestLabel.Name = "biggestLabel";
-            biggestLabel.Size = new Size(213, 28);
+            biggestLabel.Size = new Size(243, 28);
             biggestLabel.TabIndex = 0;
-            biggestLabel.Text = "Botellón mas grande:";
+            biggestLabel.Text = "Botellón mas grande (L):";
             // 
             // mediumLabel
             // 
             mediumLabel.Anchor = AnchorStyles.Right;
             mediumLabel.AutoSize = true;
             mediumLabel.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            mediumLabel.Location = new Point(151, 56);
+            mediumLabel.Location = new Point(125, 56);
             mediumLabel.Name = "mediumLabel";
-            mediumLabel.Size = new Size(185, 28);
+            mediumLabel.Size = new Size(215, 28);
             mediumLabel.TabIndex = 1;
-            mediumLabel.Text = "Botellón mediano:";
+            mediumLabel.Text = "Botellón mediano (L):";
             // 
             // mediumSmallLabel
             // 
             mediumSmallLabel.Anchor = AnchorStyles.Right;
             mediumSmallLabel.AutoSize = true;
             mediumSmallLabel.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            mediumSmallLabel.Location = new Point(61, 103);
+            mediumSmallLabel.Location = new Point(35, 103);
             mediumSmallLabel.Name = "mediumSmallLabel";
-            mediumSmallLabel.Size = new Size(275, 28);
+            mediumSmallLabel.Size = new Size(305, 28);
             mediumSmallLabel.TabIndex = 2;
-            mediumSmallLabel.Text = "Botellón mediano-pequeño:";
+            mediumSmallLabel.Text = "Botellón mediano-pequeño (L):";
             // 
             // smallestLabel
             // 
             smallestLabel.Anchor = AnchorStyles.Right;
             smallestLabel.AutoSize = true;
             smallestLabel.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            smallestLabel.Location = new Point(107, 150);
+            smallestLabel.Location = new Point(81, 150);
             smallestLabel.Name = "smallestLabel";
-            smallestLabel.Size = new Size(229, 28);
+            smallestLabel.Size = new Size(259, 28);
             smallestLabel.TabIndex = 3;
-            smallestLabel.Text = "Botellón mas pequeño:";
+            smallestLabel.Text = "Botellón mas pequeño (L):";
             // 
             // priceBiggestLabel
             // 
             priceBiggestLabel.Anchor = AnchorStyles.Right;
             priceBiggestLabel.AutoSize = true;
             priceBiggestLabel.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            priceBiggestLabel.Location = new Point(59, 197);
+            priceBiggestLabel.Location = new Point(3, 197);
             priceBiggestLabel.Name = "priceBiggestLabel";
-            priceBiggestLabel.Size = new Size(277, 28);
+            priceBiggestLabel.Size = new Size(337, 28);
             priceBiggestLabel.TabIndex = 4;
-            priceBiggestLabel.Text = "Precio botellón mas grande:";
+            priceBiggestLabel.Text = "Precio botellón mas grande (USD):";
             // 
             // priceMediumLabel
             // 
             priceMediumLabel.Anchor = AnchorStyles.Right;
             priceMediumLabel.AutoSize = true;
             priceMediumLabel.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            priceMediumLabel.Location = new Point(87, 244);
+            priceMediumLabel.Location = new Point(31, 244);
             priceMediumLabel.Name = "priceMediumLabel";
-            priceMediumLabel.Size = new Size(249, 28);
+            priceMediumLabel.Size = new Size(309, 28);
             priceMediumLabel.TabIndex = 5;
-            priceMediumLabel.Text = "Precio botellón mediano:";
+            priceMediumLabel.Text = "Precio botellón mediano (USD):";
             // 
             // priceMediumSmallLabel
             // 
             priceMediumSmallLabel.Anchor = AnchorStyles.Right;
             priceMediumSmallLabel.AutoSize = true;
             priceMediumSmallLabel.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            priceMediumSmallLabel.Location = new Point(131, 291);
+            priceMediumSmallLabel.Location = new Point(75, 291);
             priceMediumSmallLabel.Name = "priceMediumSmallLabel";
-            priceMediumSmallLabel.Size = new Size(205, 28);
+            priceMediumSmallLabel.Size = new Size(265, 28);
             priceMediumSmallLabel.TabIndex = 6;
-            priceMediumSmallLabel.Text = "Precio botellón m-p:";
+            priceMediumSmallLabel.Text = "Precio botellón m-p (USD):";
             // 
             // priceSmallestLabel
             // 
             priceSmallestLabel.Anchor = AnchorStyles.Right;
             priceSmallestLabel.AutoSize = true;
             priceSmallestLabel.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            priceSmallestLabel.Location = new Point(43, 338);
+            priceSmallestLabel.Location = new Point(46, 329);
             priceSmallestLabel.Name = "priceSmallestLabel";
-            priceSmallestLabel.Size = new Size(293, 28);
+            priceSmallestLabel.Size = new Size(294, 47);
             priceSmallestLabel.TabIndex = 7;
-            priceSmallestLabel.Text = "Precio botellón mas pequeño:";
+            priceSmallestLabel.Text = "Precio botellón mas pequeño (USD):";
             // 
             // exchangeRateLabel
             // 
             exchangeRateLabel.Anchor = AnchorStyles.Right;
             exchangeRateLabel.AutoSize = true;
             exchangeRateLabel.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            exchangeRateLabel.Location = new Point(174, 385);
+            exchangeRateLabel.Location = new Point(178, 385);
             exchangeRateLabel.Name = "exchangeRateLabel";
             exchangeRateLabel.Size = new Size(162, 28);
             exchangeRateLabel.TabIndex = 8;
@@ -213,7 +213,7 @@
             litersLabel.Anchor = AnchorStyles.Right;
             litersLabel.AutoSize = true;
             litersLabel.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            litersLabel.Location = new Point(266, 433);
+            litersLabel.Location = new Point(270, 433);
             litersLabel.Name = "litersLabel";
             litersLabel.Size = new Size(70, 28);
             litersLabel.TabIndex = 9;
@@ -224,7 +224,7 @@
             biggest.Anchor = AnchorStyles.Left;
             biggest.DecimalPlaces = 2;
             biggest.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
-            biggest.Location = new Point(342, 6);
+            biggest.Location = new Point(346, 6);
             biggest.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
             biggest.Name = "biggest";
             biggest.Size = new Size(229, 34);
@@ -236,7 +236,7 @@
             medium.Anchor = AnchorStyles.Left;
             medium.DecimalPlaces = 2;
             medium.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
-            medium.Location = new Point(342, 53);
+            medium.Location = new Point(346, 53);
             medium.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
             medium.Name = "medium";
             medium.Size = new Size(229, 34);
@@ -248,7 +248,7 @@
             mediumSmall.Anchor = AnchorStyles.Left;
             mediumSmall.DecimalPlaces = 2;
             mediumSmall.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
-            mediumSmall.Location = new Point(342, 100);
+            mediumSmall.Location = new Point(346, 100);
             mediumSmall.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
             mediumSmall.Name = "mediumSmall";
             mediumSmall.Size = new Size(229, 34);
@@ -260,7 +260,7 @@
             smallest.Anchor = AnchorStyles.Left;
             smallest.DecimalPlaces = 2;
             smallest.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
-            smallest.Location = new Point(342, 147);
+            smallest.Location = new Point(346, 147);
             smallest.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
             smallest.Name = "smallest";
             smallest.Size = new Size(229, 34);
@@ -272,7 +272,7 @@
             priceBiggest.Anchor = AnchorStyles.Left;
             priceBiggest.DecimalPlaces = 2;
             priceBiggest.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
-            priceBiggest.Location = new Point(342, 194);
+            priceBiggest.Location = new Point(346, 194);
             priceBiggest.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
             priceBiggest.Name = "priceBiggest";
             priceBiggest.Size = new Size(229, 34);
@@ -284,7 +284,7 @@
             priceMedium.Anchor = AnchorStyles.Left;
             priceMedium.DecimalPlaces = 2;
             priceMedium.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
-            priceMedium.Location = new Point(342, 241);
+            priceMedium.Location = new Point(346, 241);
             priceMedium.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
             priceMedium.Name = "priceMedium";
             priceMedium.Size = new Size(229, 34);
@@ -296,7 +296,7 @@
             priceMediumSmall.Anchor = AnchorStyles.Left;
             priceMediumSmall.DecimalPlaces = 2;
             priceMediumSmall.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
-            priceMediumSmall.Location = new Point(342, 288);
+            priceMediumSmall.Location = new Point(346, 288);
             priceMediumSmall.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
             priceMediumSmall.Name = "priceMediumSmall";
             priceMediumSmall.Size = new Size(229, 34);
@@ -308,7 +308,7 @@
             priceSmallest.Anchor = AnchorStyles.Left;
             priceSmallest.DecimalPlaces = 2;
             priceSmallest.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
-            priceSmallest.Location = new Point(342, 335);
+            priceSmallest.Location = new Point(346, 335);
             priceSmallest.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
             priceSmallest.Name = "priceSmallest";
             priceSmallest.Size = new Size(229, 34);
@@ -320,7 +320,7 @@
             exchangeRate.Anchor = AnchorStyles.Left;
             exchangeRate.DecimalPlaces = 2;
             exchangeRate.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
-            exchangeRate.Location = new Point(342, 382);
+            exchangeRate.Location = new Point(346, 382);
             exchangeRate.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
             exchangeRate.Name = "exchangeRate";
             exchangeRate.Size = new Size(229, 34);
@@ -332,7 +332,7 @@
             liters.Anchor = AnchorStyles.Left;
             liters.DecimalPlaces = 2;
             liters.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
-            liters.Location = new Point(342, 430);
+            liters.Location = new Point(346, 430);
             liters.Maximum = new decimal(new int[] { 100000000, 0, 0, 0 });
             liters.Name = "liters";
             liters.Size = new Size(229, 34);

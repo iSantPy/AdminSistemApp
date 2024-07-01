@@ -9,7 +9,7 @@ namespace ControlAguaPotable.Model
     internal class Sell
     {
         public int ID { get; set; }
-        public string Date { get; set; }
+        public DateTime Date { get; set; }
         public decimal TotalLiters { get; set; }
         public decimal Amount { get; set; }
         public decimal ExchangeRate { get; set; }
@@ -18,6 +18,6 @@ namespace ControlAguaPotable.Model
         public IncomeDollars IncomeDollars { get; set; }
         public WithdrawalBs WithdrawalBs { get; set; }
         public WithdrawalDollars WithdrawalDollars { get; set; }
-        
+
     }
 }

@@ -9,6 +9,7 @@ using System.Security.Permissions;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ControlAguaPotable.Model;
 
 namespace ControlAguaPotable
 {
@@ -55,9 +56,10 @@ namespace ControlAguaPotable
             decimal withdrawalBs = bsWithdrawalNumeric.Value;
             decimal withdrawalDollar = dollarsWithdrawalNumeric.Value;
 
-            if ((mustBeZero == "0" || mustBeZero == "0.00") && (bs != 0 || dollars != 0))
+            if ((mustBeZero == "0" || mustBeZero == "0.00" || mustBeZero == "0.0") && (bs != 0 || dollars != 0))
             {
-                paymentMethodController.RegisterSellAndSellDetail(dt, bs, dollars, withdrawalBs, withdrawalDollar, dollarAmount, EXCHANGERATE);
+                Sell newSell = paymentMethodController.CreateSellAndDetails(dt, bs, dollars, withdrawalBs, withdrawalDollar, dollarAmount, EXCHANGERATE);
+                paymentMethodController.RegisterNewSell(newSell);
 
                 CleanDataTableEventArgs args = new CleanDataTableEventArgs(true);
 

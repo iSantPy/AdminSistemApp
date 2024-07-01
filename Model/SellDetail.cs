@@ -10,7 +10,6 @@ namespace ControlAguaPotable.Model
     {
         public int ID { get; set; }
         public int SellID { get; set; }
-        public Sell Sell { get; set; }
         public int Quantity { get; set; }
         public decimal Presentation { get; set; }
         public decimal UnitaryPrice { get; set; }

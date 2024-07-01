@@ -51,6 +51,12 @@
             tableLayoutPanel2 = new TableLayoutPanel();
             clnBtn = new Button();
             acceptBtn = new Button();
+            tableLayoutPanel7 = new TableLayoutPanel();
+            cashCheckBox = new CheckBox();
+            bankCheckBox = new CheckBox();
+            tableLayoutPanel8 = new TableLayoutPanel();
+            cashCheckBox2 = new CheckBox();
+            bankCheckBox2 = new CheckBox();
             tableLayoutPanel1.SuspendLayout();
             Income.SuspendLayout();
             tableLayoutPanel5.SuspendLayout();
@@ -63,6 +69,8 @@
             ((System.ComponentModel.ISupportInitialize)bsWithdrawalNumeric).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dollarsWithdrawalNumeric).BeginInit();
             tableLayoutPanel2.SuspendLayout();
+            tableLayoutPanel7.SuspendLayout();
+            tableLayoutPanel8.SuspendLayout();
             SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -82,6 +90,7 @@
             // 
             // Income
             // 
+            Income.Controls.Add(tableLayoutPanel7);
             Income.Controls.Add(tableLayoutPanel5);
             Income.Controls.Add(tableLayoutPanel3);
             Income.Dock = DockStyle.Fill;
@@ -197,6 +206,7 @@
             // 
             // withdrawal
             // 
+            withdrawal.Controls.Add(tableLayoutPanel8);
             withdrawal.Controls.Add(tableLayoutPanel6);
             withdrawal.Controls.Add(tableLayoutPanel4);
             withdrawal.Dock = DockStyle.Fill;
@@ -349,6 +359,82 @@
             acceptBtn.Text = "Aceptar";
             acceptBtn.UseVisualStyleBackColor = false;
             // 
+            // tableLayoutPanel7
+            // 
+            tableLayoutPanel7.ColumnCount = 2;
+            tableLayoutPanel7.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel7.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel7.Controls.Add(cashCheckBox, 0, 0);
+            tableLayoutPanel7.Controls.Add(bankCheckBox, 1, 0);
+            tableLayoutPanel7.Location = new Point(122, 21);
+            tableLayoutPanel7.Name = "tableLayoutPanel7";
+            tableLayoutPanel7.RowCount = 1;
+            tableLayoutPanel7.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel7.Size = new Size(384, 31);
+            tableLayoutPanel7.TabIndex = 2;
+            // 
+            // cashCheckBox
+            // 
+            cashCheckBox.Anchor = AnchorStyles.None;
+            cashCheckBox.AutoSize = true;
+            cashCheckBox.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+            cashCheckBox.Location = new Point(36, 3);
+            cashCheckBox.Name = "cashCheckBox";
+            cashCheckBox.Size = new Size(119, 25);
+            cashCheckBox.TabIndex = 0;
+            cashCheckBox.Text = "Efectivo Bs";
+            cashCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // bankCheckBox
+            // 
+            bankCheckBox.Anchor = AnchorStyles.None;
+            bankCheckBox.AutoSize = true;
+            bankCheckBox.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+            bankCheckBox.Location = new Point(211, 3);
+            bankCheckBox.Name = "bankCheckBox";
+            bankCheckBox.Size = new Size(154, 25);
+            bankCheckBox.TabIndex = 1;
+            bankCheckBox.Text = "Tranferencia Bs";
+            bankCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanel8
+            // 
+            tableLayoutPanel8.ColumnCount = 2;
+            tableLayoutPanel8.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel8.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel8.Controls.Add(cashCheckBox2, 0, 0);
+            tableLayoutPanel8.Controls.Add(bankCheckBox2, 1, 0);
+            tableLayoutPanel8.Location = new Point(122, 18);
+            tableLayoutPanel8.Name = "tableLayoutPanel8";
+            tableLayoutPanel8.RowCount = 1;
+            tableLayoutPanel8.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel8.Size = new Size(384, 31);
+            tableLayoutPanel8.TabIndex = 3;
+            // 
+            // cashCheckBox2
+            // 
+            cashCheckBox2.Anchor = AnchorStyles.None;
+            cashCheckBox2.AutoSize = true;
+            cashCheckBox2.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+            cashCheckBox2.Location = new Point(36, 3);
+            cashCheckBox2.Name = "cashCheckBox2";
+            cashCheckBox2.Size = new Size(119, 25);
+            cashCheckBox2.TabIndex = 0;
+            cashCheckBox2.Text = "Efectivo Bs";
+            cashCheckBox2.UseVisualStyleBackColor = true;
+            // 
+            // bankCheckBox2
+            // 
+            bankCheckBox2.Anchor = AnchorStyles.None;
+            bankCheckBox2.AutoSize = true;
+            bankCheckBox2.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+            bankCheckBox2.Location = new Point(211, 3);
+            bankCheckBox2.Name = "bankCheckBox2";
+            bankCheckBox2.Size = new Size(154, 25);
+            bankCheckBox2.TabIndex = 1;
+            bankCheckBox2.Text = "Tranferencia Bs";
+            bankCheckBox2.UseVisualStyleBackColor = true;
+            // 
             // PaymentMethodWindow
             // 
             AutoScaleDimensions = new SizeF(11F, 28F);
@@ -381,6 +467,10 @@
             ((System.ComponentModel.ISupportInitialize)bsWithdrawalNumeric).EndInit();
             ((System.ComponentModel.ISupportInitialize)dollarsWithdrawalNumeric).EndInit();
             tableLayoutPanel2.ResumeLayout(false);
+            tableLayoutPanel7.ResumeLayout(false);
+            tableLayoutPanel7.PerformLayout();
+            tableLayoutPanel8.ResumeLayout(false);
+            tableLayoutPanel8.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -408,5 +498,11 @@
         private Label label2;
         private Label label4;
         private Label label5;
+        private TableLayoutPanel tableLayoutPanel7;
+        private CheckBox cashCheckBox;
+        private CheckBox bankCheckBox;
+        private TableLayoutPanel tableLayoutPanel8;
+        private CheckBox cashCheckBox2;
+        private CheckBox bankCheckBox2;
     }
 }

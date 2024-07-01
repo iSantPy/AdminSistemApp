@@ -4,7 +4,7 @@ using System.Xml.Schema;
 using System.Configuration;
 using ControlAguaPotable.Model;
 using System.Windows.Forms.DataVisualization.Charting;
-using Microsoft.EntityFrameworkCore;
+using System.Globalization;
 
 namespace ControlAguaPotable
 {
@@ -28,6 +28,7 @@ namespace ControlAguaPotable
         private CustomizeWindow customizeWindow;
         private SettingsWindow settingsWindow;
         private PaymentMethodWindow paymentMethodWindow = null;
+        private BuyingWindow buyingWindow;
 
         private DataTable dt;
         private DataTable dtBill;
@@ -60,6 +61,7 @@ namespace ControlAguaPotable
             addBtn.Click += AddBtn_Click;
             acceptBtn.Click += AcceptBtn_Click;
             monthCalendar.DateSelected += MonthCalendar_DateSelected;
+            toTextBox.TextChanged += toTextBox_TextChanged;
 
             InitializeToolTipsAndLabels();
         }
@@ -70,7 +72,8 @@ namespace ControlAguaPotable
             string supplier = supplierTextBox.Text;
             bool bsChecked = bsRadioBtn.Checked;
 
-            mainWindowController.InsertBillToDb(type, supplier, bsChecked);
+            Bill newBill = mainWindowController.CreateBill(type, supplier, bsChecked);
+            mainWindowController.InsertBillToDb(newBill);
 
             mainWindowController.CleanDataTableBill();
 
@@ -307,21 +310,36 @@ namespace ControlAguaPotable
 
         private void toTextBox_TextChanged(object sender, EventArgs e)
         {
-            TextBox textBox = sender as TextBox;
-            string to = textBox.Text;
-
-            string from = fromTextBox.Text;
-
-            if (to != "")
+            try
             {
-                Dictionary<string, DataTable> dictWithDataTables = mainWindowController.PlottingCharts(from, to);
+                TextBox textBox = sender as TextBox;
+                string date1 = textBox.Text;
 
-                DataTable liters = dictWithDataTables["liters"];
-                DataTable money = dictWithDataTables["money"];
+                string date2 = fromTextBox.Text;
 
-                SetupChart1(liters);
-                SetupChart2(money);
+                DateTime d2 = DateTime.ParseExact(date2, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                DateTime from = DateTime.ParseExact(d2.ToString("yyyy/MM/dd"), "yyyy/MM/dd", CultureInfo.InvariantCulture);
+
+                DateTime d1 = DateTime.ParseExact(date1, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                DateTime to = DateTime.ParseExact(d1.ToString("yyyy/MM/dd"), "yyyy/MM/dd", CultureInfo.InvariantCulture);
+
+                if (date1 != "")
+                {
+                    Dictionary<string, DataTable> dictWithDataTables = mainWindowController.PlottingCharts(from, to);
+
+                    DataTable liters = dictWithDataTables["liters"];
+                    DataTable money = dictWithDataTables["money"];
+
+                    SetupChart1(liters);
+                    SetupChart2(money);
+                }
             }
+
+            catch
+            {
+
+            }
+
         }
 
         private void SetupChart1(DataTable dataTable)
@@ -378,6 +396,12 @@ namespace ControlAguaPotable
 
             chart2.DataSource = dataTable;
             chart2.DataBind();
+        }
+
+        private void buy_Click(object sender, EventArgs e)
+        {
+            buyingWindow = new BuyingWindow();
+            buyingWindow.ShowDialog();
         }
     }
 
