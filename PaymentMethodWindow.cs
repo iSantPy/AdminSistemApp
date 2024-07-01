@@ -37,6 +37,8 @@ namespace ControlAguaPotable
             clnBtn.Click += ClnBtn_Click;
             dollarsNumeric.ValueChanged += bsNumeric_ValueChanged;
             dollarsWithdrawalNumeric.ValueChanged += bsWithdrawalNumeric_ValueChanged;
+            bankBsNumericUpDown.ValueChanged += bsNumeric_ValueChanged;
+            bankBsWithdrawalNumericUpDown.ValueChanged += bsWithdrawalNumeric_ValueChanged;
             acceptBtn.Click += AcceptBtn_Click;
         }
 
@@ -53,12 +55,15 @@ namespace ControlAguaPotable
             decimal bs = bsNumeric.Value;
             decimal dollars = dollarsNumeric.Value;
 
+            decimal bankBs = bankBsNumericUpDown.Value;
+            decimal bankBsWithdrawal = bankBsWithdrawalNumericUpDown.Value;
+
             decimal withdrawalBs = bsWithdrawalNumeric.Value;
             decimal withdrawalDollar = dollarsWithdrawalNumeric.Value;
 
-            if ((mustBeZero == "0" || mustBeZero == "0.00" || mustBeZero == "0.0") && (bs != 0 || dollars != 0))
+            if ((mustBeZero == "0" || mustBeZero == "0.00" || mustBeZero == "0.0") && (bs != 0 || dollars != 0 || bankBs != 0))
             {
-                Sell newSell = paymentMethodController.CreateSellAndDetails(dt, bs, dollars, withdrawalBs, withdrawalDollar, dollarAmount, EXCHANGERATE);
+                Sell newSell = paymentMethodController.CreateSellAndDetails(dt, bs, bankBs, dollars, bankBsWithdrawal, withdrawalBs, withdrawalDollar, dollarAmount, EXCHANGERATE);
                 paymentMethodController.RegisterNewSell(newSell);
 
                 CleanDataTableEventArgs args = new CleanDataTableEventArgs(true);
@@ -73,9 +78,11 @@ namespace ControlAguaPotable
         {
             bsNumeric.Value = 0;
             dollarsNumeric.Value = 0;
+            bankBsNumericUpDown.Value = 0;
 
             bsWithdrawalNumeric.Value = 0;
             dollarsWithdrawalNumeric.Value = 0;
+            bankBsWithdrawalNumericUpDown.Value = 0;
 
             withdrawalMoney.Text = "0/0";
         }
@@ -97,11 +104,12 @@ namespace ControlAguaPotable
             if (success)
             {
                 decimal incomeBs = bsNumeric.Value;
+                decimal incomeBsBank = bankBsNumericUpDown.Value;
 
                 decimal incomeDollars = dollarsNumeric.Value;
                 decimal dollarsIntoBs = incomeDollars * EXCHANGERATE;
 
-                decimal resultBs = bsTotal - incomeBs - dollarsIntoBs;
+                decimal resultBs = bsTotal - incomeBs - incomeBsBank - dollarsIntoBs;
                 withdrawalBs = resultBs;
 
                 decimal resultDollars = resultBs / EXCHANGERATE;
@@ -115,8 +123,9 @@ namespace ControlAguaPotable
         { 
             decimal bs = bsWithdrawalNumeric.Value;
             decimal dollars = dollarsWithdrawalNumeric.Value;
+            decimal bankBs = bankBsWithdrawalNumericUpDown.Value;
 
-            decimal totalWithdrawal = bs + dollars * EXCHANGERATE;
+            decimal totalWithdrawal = bs + bankBs + (dollars * EXCHANGERATE);
 
             decimal resultWBs = 0m;
             decimal resultWDollars = 0m;

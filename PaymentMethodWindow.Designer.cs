@@ -39,6 +39,8 @@
             dollarsNumeric = new NumericUpDown();
             label1 = new Label();
             label2 = new Label();
+            bsBankIncome = new Label();
+            bankBsNumericUpDown = new NumericUpDown();
             withdrawal = new GroupBox();
             tableLayoutPanel6 = new TableLayoutPanel();
             withdrawalLabel = new Label();
@@ -48,29 +50,25 @@
             dollarsWithdrawalNumeric = new NumericUpDown();
             label4 = new Label();
             label5 = new Label();
+            label6 = new Label();
+            bankBsWithdrawalNumericUpDown = new NumericUpDown();
             tableLayoutPanel2 = new TableLayoutPanel();
             clnBtn = new Button();
             acceptBtn = new Button();
-            tableLayoutPanel7 = new TableLayoutPanel();
-            cashCheckBox = new CheckBox();
-            bankCheckBox = new CheckBox();
-            tableLayoutPanel8 = new TableLayoutPanel();
-            cashCheckBox2 = new CheckBox();
-            bankCheckBox2 = new CheckBox();
             tableLayoutPanel1.SuspendLayout();
             Income.SuspendLayout();
             tableLayoutPanel5.SuspendLayout();
             tableLayoutPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)bsNumeric).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dollarsNumeric).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)bankBsNumericUpDown).BeginInit();
             withdrawal.SuspendLayout();
             tableLayoutPanel6.SuspendLayout();
             tableLayoutPanel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)bsWithdrawalNumeric).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dollarsWithdrawalNumeric).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)bankBsWithdrawalNumericUpDown).BeginInit();
             tableLayoutPanel2.SuspendLayout();
-            tableLayoutPanel7.SuspendLayout();
-            tableLayoutPanel8.SuspendLayout();
             SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -90,7 +88,6 @@
             // 
             // Income
             // 
-            Income.Controls.Add(tableLayoutPanel7);
             Income.Controls.Add(tableLayoutPanel5);
             Income.Controls.Add(tableLayoutPanel3);
             Income.Dock = DockStyle.Fill;
@@ -143,26 +140,29 @@
             // 
             tableLayoutPanel3.Anchor = AnchorStyles.Left;
             tableLayoutPanel3.ColumnCount = 2;
-            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 51.0263939F));
+            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 48.9736061F));
             tableLayoutPanel3.Controls.Add(bsNumeric, 1, 0);
             tableLayoutPanel3.Controls.Add(dollarsNumeric, 1, 1);
             tableLayoutPanel3.Controls.Add(label1, 0, 0);
             tableLayoutPanel3.Controls.Add(label2, 0, 1);
-            tableLayoutPanel3.Location = new Point(9, 58);
+            tableLayoutPanel3.Controls.Add(bsBankIncome, 0, 2);
+            tableLayoutPanel3.Controls.Add(bankBsNumericUpDown, 1, 2);
+            tableLayoutPanel3.Location = new Point(18, 58);
             tableLayoutPanel3.Name = "tableLayoutPanel3";
-            tableLayoutPanel3.RowCount = 2;
-            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
-            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
+            tableLayoutPanel3.RowCount = 3;
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3344421F));
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 33.334446F));
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3311157F));
             tableLayoutPanel3.Size = new Size(341, 125);
             tableLayoutPanel3.TabIndex = 0;
             // 
             // bsNumeric
             // 
-            bsNumeric.Anchor = AnchorStyles.Left;
+            bsNumeric.Anchor = AnchorStyles.None;
             bsNumeric.DecimalPlaces = 2;
             bsNumeric.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
-            bsNumeric.Location = new Point(173, 14);
+            bsNumeric.Location = new Point(180, 3);
             bsNumeric.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
             bsNumeric.Name = "bsNumeric";
             bsNumeric.Size = new Size(154, 34);
@@ -172,10 +172,10 @@
             // 
             // dollarsNumeric
             // 
-            dollarsNumeric.Anchor = AnchorStyles.Left;
+            dollarsNumeric.Anchor = AnchorStyles.None;
             dollarsNumeric.DecimalPlaces = 2;
             dollarsNumeric.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
-            dollarsNumeric.Location = new Point(173, 76);
+            dollarsNumeric.Location = new Point(180, 44);
             dollarsNumeric.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
             dollarsNumeric.Name = "dollarsNumeric";
             dollarsNumeric.Size = new Size(154, 34);
@@ -187,26 +187,48 @@
             label1.Anchor = AnchorStyles.None;
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            label1.Location = new Point(68, 17);
+            label1.Location = new Point(28, 6);
             label1.Name = "label1";
-            label1.Size = new Size(34, 28);
+            label1.Size = new Size(117, 28);
             label1.TabIndex = 6;
-            label1.Text = "Bs";
+            label1.Text = "Bs efectivo";
             // 
             // label2
             // 
             label2.Anchor = AnchorStyles.None;
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            label2.Location = new Point(43, 79);
+            label2.Location = new Point(45, 47);
             label2.Name = "label2";
             label2.Size = new Size(84, 28);
             label2.TabIndex = 7;
             label2.Text = "Dólares";
             // 
+            // bsBankIncome
+            // 
+            bsBankIncome.Anchor = AnchorStyles.None;
+            bsBankIncome.AutoSize = true;
+            bsBankIncome.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            bsBankIncome.Location = new Point(3, 89);
+            bsBankIncome.Name = "bsBankIncome";
+            bsBankIncome.Size = new Size(167, 28);
+            bsBankIncome.TabIndex = 8;
+            bsBankIncome.Text = "Transferencia Bs";
+            // 
+            // bankBsNumericUpDown
+            // 
+            bankBsNumericUpDown.Anchor = AnchorStyles.None;
+            bankBsNumericUpDown.DecimalPlaces = 2;
+            bankBsNumericUpDown.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
+            bankBsNumericUpDown.Location = new Point(180, 86);
+            bankBsNumericUpDown.Maximum = new decimal(new int[] { 1000000, 0, 0, 0 });
+            bankBsNumericUpDown.Name = "bankBsNumericUpDown";
+            bankBsNumericUpDown.Size = new Size(154, 34);
+            bankBsNumericUpDown.TabIndex = 9;
+            bankBsNumericUpDown.TextAlign = HorizontalAlignment.Center;
+            // 
             // withdrawal
             // 
-            withdrawal.Controls.Add(tableLayoutPanel8);
             withdrawal.Controls.Add(tableLayoutPanel6);
             withdrawal.Controls.Add(tableLayoutPanel4);
             withdrawal.Dock = DockStyle.Fill;
@@ -259,26 +281,29 @@
             // 
             tableLayoutPanel4.Anchor = AnchorStyles.Left;
             tableLayoutPanel4.ColumnCount = 2;
-            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 51.0263939F));
+            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 48.9736061F));
             tableLayoutPanel4.Controls.Add(bsWithdrawalNumeric, 1, 0);
             tableLayoutPanel4.Controls.Add(dollarsWithdrawalNumeric, 1, 1);
             tableLayoutPanel4.Controls.Add(label4, 0, 0);
             tableLayoutPanel4.Controls.Add(label5, 0, 1);
-            tableLayoutPanel4.Location = new Point(9, 55);
+            tableLayoutPanel4.Controls.Add(label6, 0, 2);
+            tableLayoutPanel4.Controls.Add(bankBsWithdrawalNumericUpDown, 1, 2);
+            tableLayoutPanel4.Location = new Point(18, 55);
             tableLayoutPanel4.Name = "tableLayoutPanel4";
-            tableLayoutPanel4.RowCount = 2;
-            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
-            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
+            tableLayoutPanel4.RowCount = 3;
+            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3344421F));
+            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 33.334446F));
+            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3311157F));
             tableLayoutPanel4.Size = new Size(341, 125);
             tableLayoutPanel4.TabIndex = 0;
             // 
             // bsWithdrawalNumeric
             // 
-            bsWithdrawalNumeric.Anchor = AnchorStyles.Left;
+            bsWithdrawalNumeric.Anchor = AnchorStyles.None;
             bsWithdrawalNumeric.DecimalPlaces = 2;
             bsWithdrawalNumeric.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
-            bsWithdrawalNumeric.Location = new Point(173, 14);
+            bsWithdrawalNumeric.Location = new Point(180, 3);
             bsWithdrawalNumeric.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
             bsWithdrawalNumeric.Name = "bsWithdrawalNumeric";
             bsWithdrawalNumeric.Size = new Size(154, 34);
@@ -288,10 +313,10 @@
             // 
             // dollarsWithdrawalNumeric
             // 
-            dollarsWithdrawalNumeric.Anchor = AnchorStyles.Left;
+            dollarsWithdrawalNumeric.Anchor = AnchorStyles.None;
             dollarsWithdrawalNumeric.DecimalPlaces = 2;
             dollarsWithdrawalNumeric.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
-            dollarsWithdrawalNumeric.Location = new Point(173, 76);
+            dollarsWithdrawalNumeric.Location = new Point(180, 44);
             dollarsWithdrawalNumeric.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
             dollarsWithdrawalNumeric.Name = "dollarsWithdrawalNumeric";
             dollarsWithdrawalNumeric.Size = new Size(154, 34);
@@ -303,22 +328,45 @@
             label4.Anchor = AnchorStyles.None;
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            label4.Location = new Point(68, 17);
+            label4.Location = new Point(28, 6);
             label4.Name = "label4";
-            label4.Size = new Size(34, 28);
+            label4.Size = new Size(117, 28);
             label4.TabIndex = 6;
-            label4.Text = "Bs";
+            label4.Text = "Bs efectivo";
             // 
             // label5
             // 
             label5.Anchor = AnchorStyles.None;
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            label5.Location = new Point(43, 79);
+            label5.Location = new Point(45, 47);
             label5.Name = "label5";
             label5.Size = new Size(84, 28);
             label5.TabIndex = 7;
             label5.Text = "Dólares";
+            // 
+            // label6
+            // 
+            label6.Anchor = AnchorStyles.None;
+            label6.AutoSize = true;
+            label6.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            label6.Location = new Point(3, 89);
+            label6.Name = "label6";
+            label6.Size = new Size(167, 28);
+            label6.TabIndex = 8;
+            label6.Text = "Transferencia Bs";
+            // 
+            // bankBsWithdrawalNumericUpDown
+            // 
+            bankBsWithdrawalNumericUpDown.Anchor = AnchorStyles.None;
+            bankBsWithdrawalNumericUpDown.DecimalPlaces = 2;
+            bankBsWithdrawalNumericUpDown.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
+            bankBsWithdrawalNumericUpDown.Location = new Point(180, 86);
+            bankBsWithdrawalNumericUpDown.Maximum = new decimal(new int[] { 1000000, 0, 0, 0 });
+            bankBsWithdrawalNumericUpDown.Name = "bankBsWithdrawalNumericUpDown";
+            bankBsWithdrawalNumericUpDown.Size = new Size(154, 34);
+            bankBsWithdrawalNumericUpDown.TabIndex = 9;
+            bankBsWithdrawalNumericUpDown.TextAlign = HorizontalAlignment.Center;
             // 
             // tableLayoutPanel2
             // 
@@ -359,82 +407,6 @@
             acceptBtn.Text = "Aceptar";
             acceptBtn.UseVisualStyleBackColor = false;
             // 
-            // tableLayoutPanel7
-            // 
-            tableLayoutPanel7.ColumnCount = 2;
-            tableLayoutPanel7.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel7.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel7.Controls.Add(cashCheckBox, 0, 0);
-            tableLayoutPanel7.Controls.Add(bankCheckBox, 1, 0);
-            tableLayoutPanel7.Location = new Point(122, 21);
-            tableLayoutPanel7.Name = "tableLayoutPanel7";
-            tableLayoutPanel7.RowCount = 1;
-            tableLayoutPanel7.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel7.Size = new Size(384, 31);
-            tableLayoutPanel7.TabIndex = 2;
-            // 
-            // cashCheckBox
-            // 
-            cashCheckBox.Anchor = AnchorStyles.None;
-            cashCheckBox.AutoSize = true;
-            cashCheckBox.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            cashCheckBox.Location = new Point(36, 3);
-            cashCheckBox.Name = "cashCheckBox";
-            cashCheckBox.Size = new Size(119, 25);
-            cashCheckBox.TabIndex = 0;
-            cashCheckBox.Text = "Efectivo Bs";
-            cashCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // bankCheckBox
-            // 
-            bankCheckBox.Anchor = AnchorStyles.None;
-            bankCheckBox.AutoSize = true;
-            bankCheckBox.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            bankCheckBox.Location = new Point(211, 3);
-            bankCheckBox.Name = "bankCheckBox";
-            bankCheckBox.Size = new Size(154, 25);
-            bankCheckBox.TabIndex = 1;
-            bankCheckBox.Text = "Tranferencia Bs";
-            bankCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // tableLayoutPanel8
-            // 
-            tableLayoutPanel8.ColumnCount = 2;
-            tableLayoutPanel8.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel8.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel8.Controls.Add(cashCheckBox2, 0, 0);
-            tableLayoutPanel8.Controls.Add(bankCheckBox2, 1, 0);
-            tableLayoutPanel8.Location = new Point(122, 18);
-            tableLayoutPanel8.Name = "tableLayoutPanel8";
-            tableLayoutPanel8.RowCount = 1;
-            tableLayoutPanel8.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel8.Size = new Size(384, 31);
-            tableLayoutPanel8.TabIndex = 3;
-            // 
-            // cashCheckBox2
-            // 
-            cashCheckBox2.Anchor = AnchorStyles.None;
-            cashCheckBox2.AutoSize = true;
-            cashCheckBox2.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            cashCheckBox2.Location = new Point(36, 3);
-            cashCheckBox2.Name = "cashCheckBox2";
-            cashCheckBox2.Size = new Size(119, 25);
-            cashCheckBox2.TabIndex = 0;
-            cashCheckBox2.Text = "Efectivo Bs";
-            cashCheckBox2.UseVisualStyleBackColor = true;
-            // 
-            // bankCheckBox2
-            // 
-            bankCheckBox2.Anchor = AnchorStyles.None;
-            bankCheckBox2.AutoSize = true;
-            bankCheckBox2.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            bankCheckBox2.Location = new Point(211, 3);
-            bankCheckBox2.Name = "bankCheckBox2";
-            bankCheckBox2.Size = new Size(154, 25);
-            bankCheckBox2.TabIndex = 1;
-            bankCheckBox2.Text = "Tranferencia Bs";
-            bankCheckBox2.UseVisualStyleBackColor = true;
-            // 
             // PaymentMethodWindow
             // 
             AutoScaleDimensions = new SizeF(11F, 28F);
@@ -459,6 +431,7 @@
             tableLayoutPanel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)bsNumeric).EndInit();
             ((System.ComponentModel.ISupportInitialize)dollarsNumeric).EndInit();
+            ((System.ComponentModel.ISupportInitialize)bankBsNumericUpDown).EndInit();
             withdrawal.ResumeLayout(false);
             tableLayoutPanel6.ResumeLayout(false);
             tableLayoutPanel6.PerformLayout();
@@ -466,11 +439,8 @@
             tableLayoutPanel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)bsWithdrawalNumeric).EndInit();
             ((System.ComponentModel.ISupportInitialize)dollarsWithdrawalNumeric).EndInit();
+            ((System.ComponentModel.ISupportInitialize)bankBsWithdrawalNumericUpDown).EndInit();
             tableLayoutPanel2.ResumeLayout(false);
-            tableLayoutPanel7.ResumeLayout(false);
-            tableLayoutPanel7.PerformLayout();
-            tableLayoutPanel8.ResumeLayout(false);
-            tableLayoutPanel8.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -498,11 +468,9 @@
         private Label label2;
         private Label label4;
         private Label label5;
-        private TableLayoutPanel tableLayoutPanel7;
-        private CheckBox cashCheckBox;
-        private CheckBox bankCheckBox;
-        private TableLayoutPanel tableLayoutPanel8;
-        private CheckBox cashCheckBox2;
-        private CheckBox bankCheckBox2;
+        private Label bsBankIncome;
+        private NumericUpDown bankBsNumericUpDown;
+        private Label label6;
+        private NumericUpDown bankBsWithdrawalNumericUpDown;
     }
 }

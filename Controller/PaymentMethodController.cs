@@ -13,7 +13,7 @@ namespace ControlAguaPotable.Controller
     internal class PaymentMethodController
     {
         string connectionString = ConfigurationManager.ConnectionStrings["Connection"].ConnectionString;
-        public Sell CreateSellAndDetails(DataTable dt, decimal bs, decimal dollars, decimal withdrawalBs, decimal withdrawalDollars, decimal dollarAmount, decimal exchangeRate)
+        public Sell CreateSellAndDetails(DataTable dt, decimal bs, decimal bankBs, decimal dollars, decimal bankBsWithdrawal, decimal withdrawalBs, decimal withdrawalDollars, decimal dollarAmount, decimal exchangeRate)
         {
             decimal totalLiters = dt.AsEnumerable().Sum(row => row.Field<decimal>("litrosTotal"));
 
@@ -40,24 +40,66 @@ namespace ControlAguaPotable.Controller
                 }
             }
 
-            if (bs != 0 && dollars == 0) // only bs
+            if ((bs != 0 || bankBs != 0) && dollars == 0) // ONLY BS PAY (OR CASH OR TRANFER)
             {
-                newSell.IncomeBs = new IncomeBs
+                if (bs != 0 && bankBs == 0) // bs cash only
                 {
-                    Amount = bs
-                };
-
-                // bs withdrawal only
-                if (withdrawalBs != 0 && withdrawalDollars == 0)
-                {
-                    newSell.WithdrawalBs = new WithdrawalBs
+                    newSell.IncomeBs = new IncomeBs
                     {
-                        Amount = withdrawalBs
+                        Amount = bs
+                    };
+                }
+                else if (bs == 0 && bankBs != 0) // transfer only
+                {
+                    newSell.IncomeBankBs = new IncomeBankBs
+                    {
+                        Amount = bankBs
+                    };
+                }
+                else // bs cash + transfer
+                {
+                    newSell.IncomeBs = new IncomeBs
+                    {
+                        Amount = bs
+                    };
+                    newSell.IncomeBankBs = new IncomeBankBs
+                    {
+                        Amount = bankBs
                     };
                 }
 
+                // bs withdrawal only (cash or transfer)
+                if ((withdrawalBs != 0 || bankBsWithdrawal != 0) && withdrawalDollars == 0)
+                {
+                    if (withdrawalBs != 0 && bankBsWithdrawal == 0) // bs cash only withdrawal
+                    {
+                        newSell.WithdrawalBs = new WithdrawalBs
+                        {
+                            Amount = withdrawalBs
+                        };
+                    }
+                    else if (withdrawalBs == 0 && bankBsWithdrawal != 0)
+                    {
+                        newSell.WithdrawalBankBs = new WithdrawalBankBs
+                        {
+                            Amount = bankBsWithdrawal
+                        };
+                    }
+                    else
+                    {
+                        newSell.WithdrawalBs = new WithdrawalBs
+                        {
+                            Amount = withdrawalBs
+                        };
+                        newSell.WithdrawalBankBs = new WithdrawalBankBs
+                        {
+                            Amount = bankBsWithdrawal
+                        };
+                    }   
+                }
+
                 // dollars withdrawal only
-                else if (withdrawalBs == 0 && withdrawalDollars != 0)
+                else if ((withdrawalBs == 0 && bankBsWithdrawal == 0) && withdrawalDollars != 0)
                 {
                     newSell.WithdrawalDollars = new WithdrawalDollars
                     {
@@ -66,20 +108,42 @@ namespace ControlAguaPotable.Controller
                 }
 
                 // bs + dollar withdrawals
-                else if (withdrawalBs != 0 && withdrawalDollars != 0)
+                else if ((withdrawalBs != 0 || bankBsWithdrawal != 0) && withdrawalDollars != 0)
                 {
-                    newSell.WithdrawalBs = new WithdrawalBs
-                    {
-                        Amount = withdrawalBs
-                    };
                     newSell.WithdrawalDollars = new WithdrawalDollars
                     {
                         Amount = withdrawalDollars
                     };
+
+                    if (withdrawalBs != 0 && bankBsWithdrawal == 0)
+                    {
+                        newSell.WithdrawalBs = new WithdrawalBs
+                        {
+                            Amount = withdrawalBs
+                        };
+                    }
+                    else if (withdrawalBs == 0 && bankBsWithdrawal != 0)
+                    {
+                        newSell.WithdrawalBankBs = new WithdrawalBankBs
+                        {
+                            Amount = bankBsWithdrawal
+                        };
+                    }
+                    else
+                    {
+                        newSell.WithdrawalBs = new WithdrawalBs
+                        {
+                            Amount = withdrawalBs
+                        };
+                        newSell.WithdrawalBankBs = new WithdrawalBankBs
+                        {
+                            Amount = bankBsWithdrawal
+                        };
+                    }
                 }
             }
 
-            else if (bs == 0 && dollars != 0) // only dollars
+            else if ((bs == 0 && bankBs == 0) && dollars != 0) // ONLY DOLLARS PAY
             {
                 newSell.IncomeDollars = new IncomeDollars
                 {
@@ -87,59 +151,152 @@ namespace ControlAguaPotable.Controller
                 };
 
                 // bs withdrawal only
-                if (withdrawalBs != 0 && withdrawalDollars == 0)
+                if ((withdrawalBs != 0 || bankBsWithdrawal !=0) && withdrawalDollars == 0)
                 {
-                    newSell.WithdrawalBs = new WithdrawalBs
+                    if (withdrawalBs != 0 && bankBsWithdrawal == 0)
                     {
-                        Amount = withdrawalBs
-                    };
+                        newSell.WithdrawalBs = new WithdrawalBs
+                        {
+                            Amount = withdrawalBs
+                        };
+                    }
+                    else if (withdrawalBs == 0 && bankBsWithdrawal != 0)
+                    {
+                        newSell.WithdrawalBankBs = new WithdrawalBankBs
+                        {
+                            Amount= bankBsWithdrawal
+                        };
+                    }
+                    else
+                    {
+                        newSell.WithdrawalBs = new WithdrawalBs
+                        {
+                            Amount = withdrawalBs
+                        };
+                        newSell.WithdrawalBankBs = new WithdrawalBankBs
+                        {
+                            Amount = bankBsWithdrawal
+                        };
+                    }
                 }
 
                 // dollars withdrawal only
-                else if (withdrawalBs == 0 && withdrawalDollars != 0)
+                else if ((withdrawalBs == 0 && bankBsWithdrawal == 0) && withdrawalDollars != 0)
                 {
                     newSell.WithdrawalDollars = new WithdrawalDollars
                     {
                         Amount = withdrawalDollars
                     };
                 }
-
+                   
                 // bs + dollar withdrawals
-                else if (withdrawalBs != 0 && withdrawalDollars != 0)
+                else if ((withdrawalBs != 0 || bankBsWithdrawal != 0) && withdrawalDollars != 0)
                 {
-                    newSell.WithdrawalBs = new WithdrawalBs
-                    {
-                        Amount = withdrawalBs
-                    };
                     newSell.WithdrawalDollars = new WithdrawalDollars
                     {
                         Amount = withdrawalDollars
                     };
+
+                    if (withdrawalBs !=0 && bankBsWithdrawal == 0)
+                    {
+                        newSell.WithdrawalBs = new WithdrawalBs
+                        {
+                            Amount = withdrawalBs
+                        };
+                    }
+                    else if (withdrawalBs == 0 && bankBsWithdrawal != 0)
+                    {
+                        newSell.WithdrawalBankBs = new WithdrawalBankBs
+                        {
+                            Amount = bankBsWithdrawal
+                        };
+                    }
+                    else
+                    {
+                        newSell.WithdrawalBs = new WithdrawalBs
+                        {
+                            Amount = withdrawalBs
+                        };
+                        newSell.WithdrawalBankBs = new WithdrawalBankBs
+                        {
+                            Amount = bankBsWithdrawal
+                        };
+                    }
                 }
             }
 
-            else // bs + dollars
+            else // BS + DOLLARS PAY
             {
-                newSell.IncomeDollars = new IncomeDollars
+                if (bs != 0 && bankBs == 0)
                 {
-                    Amount = dollars
-                };
-                newSell.IncomeBs = new IncomeBs
-                {
-                    Amount = bs
-                };
-
-                // bs withdrawal only
-                if (withdrawalBs != 0 && withdrawalDollars == 0)
-                {
-                    newSell.WithdrawalBs = new WithdrawalBs
+                    newSell.IncomeDollars = new IncomeDollars
                     {
-                        Amount = withdrawalBs
+                        Amount = dollars
                     };
+                    newSell.IncomeBs = new IncomeBs // cash bs
+                    {
+                        Amount = bs
+                    };
+                }
+                else if (bs == 0 && bankBs != 0)
+                {
+                    newSell.IncomeBankBs = new IncomeBankBs
+                    {
+                        Amount = bankBs
+                    };
+                    newSell.IncomeDollars = new IncomeDollars
+                    {
+                        Amount = dollars
+                    };
+                }
+                else
+                {
+                    newSell.IncomeDollars = new IncomeDollars
+                    {
+                        Amount = dollars
+                    };
+                    newSell.IncomeBankBs = new IncomeBankBs
+                    {
+                        Amount = bankBs
+                    };
+                    newSell.IncomeBs = new IncomeBs // cash bs
+                    {
+                        Amount = bs
+                    };
+                }
+                
+                // bs withdrawal only
+                if ((withdrawalBs != 0 || bankBsWithdrawal != 0) && withdrawalDollars == 0)
+                {
+                    if (withdrawalBs != 0 && bankBsWithdrawal == 0)
+                    {
+                        newSell.WithdrawalBs = new WithdrawalBs
+                        {
+                            Amount = withdrawalBs
+                        };
+                    }
+                    else if (withdrawalBs == 0 && bankBsWithdrawal != 0)
+                    {
+                        newSell.WithdrawalBankBs = new WithdrawalBankBs
+                        {
+                            Amount = bankBsWithdrawal
+                        };
+                    }
+                    else
+                    {
+                        newSell.WithdrawalBs = new WithdrawalBs
+                        {
+                            Amount = withdrawalBs
+                        };
+                        newSell.WithdrawalBankBs = new WithdrawalBankBs
+                        {
+                            Amount = bankBsWithdrawal
+                        };
+                    }
                 }
 
                 // dollars withdrawal only
-                else if (withdrawalBs == 0 && withdrawalDollars != 0)
+                else if ((withdrawalBs == 0 && bankBsWithdrawal == 0) && withdrawalDollars != 0)
                 {
                     newSell.WithdrawalDollars = new WithdrawalDollars
                     {
@@ -148,12 +305,34 @@ namespace ControlAguaPotable.Controller
                 }
 
                 // bs + dollar withdrawals
-                else if (withdrawalBs != 0 && withdrawalDollars != 0)
+                else if ((withdrawalBs != 0 || bankBsWithdrawal != 0) && withdrawalDollars != 0)
                 {
-                    newSell.WithdrawalBs = new WithdrawalBs
+                    if (withdrawalBs != 0 && bankBsWithdrawal == 0)
                     {
-                        Amount = withdrawalBs
-                    };
+                        newSell.WithdrawalBs = new WithdrawalBs
+                        {
+                            Amount = withdrawalBs
+                        };
+                    }
+                    else if (withdrawalBs == 0 && bankBsWithdrawal != 0)
+                    {
+                        newSell.WithdrawalBankBs = new WithdrawalBankBs
+                        {
+                            Amount = bankBsWithdrawal
+                        };
+                    }
+                    else
+                    {
+                        newSell.WithdrawalBs = new WithdrawalBs
+                        {
+                            Amount = withdrawalBs
+                        };
+                        newSell.WithdrawalBankBs = new WithdrawalBankBs
+                        {
+                            Amount = bankBsWithdrawal
+                        };
+                    }
+                    
                     newSell.WithdrawalDollars = new WithdrawalDollars
                     {
                         Amount = withdrawalDollars
@@ -199,7 +378,7 @@ namespace ControlAguaPotable.Controller
                             }
                         }
 
-                        if (newSell.IncomeBs != null)
+                        if (newSell.IncomeBs != null) 
                         {
                             newSell.IncomeBs.SellID = newSell.ID; // setting sellId for details
                             string incomeBsQuery = "INSERT INTO IncomeBs (sellID, amount) VALUES (@sellID, @amount)";
@@ -223,7 +402,7 @@ namespace ControlAguaPotable.Controller
                             }
                         }
 
-                        if (newSell.WithdrawalBs != null)
+                        if (newSell.WithdrawalBs != null) 
                         {
                             newSell.WithdrawalBs.SellID = newSell.ID;
                             string withdrawalBsQuery = "INSERT INTO WithdrawalBs (sellID, amount) VALUES (@sellID, @amount)";
@@ -244,6 +423,30 @@ namespace ControlAguaPotable.Controller
                                 withdrawalDollarsCmd.Parameters.AddWithValue("@sellID", newSell.WithdrawalDollars.SellID);
                                 withdrawalDollarsCmd.Parameters.AddWithValue("@amount", newSell.WithdrawalDollars.Amount);
                                 withdrawalDollarsCmd.ExecuteNonQuery();
+                            }
+                        }
+
+                        if (newSell.IncomeBankBs != null)
+                        {
+                            newSell.IncomeBankBs.SellID = newSell.ID;
+                            string incomeBankBsQuery = "INSERT INTO IncomeBankBs (sellID, amount) VALUES (@sellID, @amount)";
+                            using (SQLiteCommand incomeBankBsCmd = new SQLiteCommand(incomeBankBsQuery, conn))
+                            {
+                                incomeBankBsCmd.Parameters.AddWithValue("@sellID", newSell.IncomeBankBs.SellID);
+                                incomeBankBsCmd.Parameters.AddWithValue("@amount", newSell.IncomeBankBs.Amount);
+                                incomeBankBsCmd.ExecuteNonQuery();
+                            }
+                        }
+
+                        if (newSell.WithdrawalBankBs != null)
+                        {
+                            newSell.WithdrawalBankBs.SellID = newSell.ID;
+                            string withdrawalBankBsQuery = "INSERT INTO WithdrawalBankBs (sellID, amount) VALUES (@sellID, @amount)";
+                            using (SQLiteCommand withdrawalBankBsCmd = new SQLiteCommand(withdrawalBankBsQuery, conn))
+                            {
+                                withdrawalBankBsCmd.Parameters.AddWithValue("@sellID", newSell.WithdrawalBankBs.SellID);
+                                withdrawalBankBsCmd.Parameters.AddWithValue("@amount", newSell.WithdrawalBankBs.Amount);
+                                withdrawalBankBsCmd.ExecuteNonQuery();
                             }
                         }
 

@@ -18,6 +18,8 @@ namespace ControlAguaPotable.Model
         public IncomeDollars IncomeDollars { get; set; }
         public WithdrawalBs WithdrawalBs { get; set; }
         public WithdrawalDollars WithdrawalDollars { get; set; }
+        public IncomeBankBs IncomeBankBs { get; set; }
+        public WithdrawalBankBs WithdrawalBankBs { get; set; }
 
     }
 }

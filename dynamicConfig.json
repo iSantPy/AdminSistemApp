@@ -1,12 +1,12 @@
 {
-  "Biggest": 0,
-  "Medium": 0,
-  "MediumSmall": 0,
-  "Smallest": 0,
-  "ExchangeRate": 0,
-  "Liters": 0,
-  "BiggestPrice": 0,
-  "MediumPrice": 0,
-  "MediumSmallPrice": 0,
-  "SmallestPrice": 0
+  "Biggest": 18,
+  "Medium": 10,
+  "MediumSmall": 5,
+  "Smallest": 2,
+  "ExchangeRate": 40,
+  "Liters": 10000,
+  "BiggestPrice": 3,
+  "MediumPrice": 2,
+  "MediumSmallPrice": 1,
+  "SmallestPrice": 0.5
 }

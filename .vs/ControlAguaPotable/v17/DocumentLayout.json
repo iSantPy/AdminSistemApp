@@ -11,20 +11,16 @@
       "RelativeMoniker": "D:0:0:{51623DA2-D48F-42B1-9993-4BC6C7C51EF1}|ControlAguaPotable.csproj|solutionrelative:paymentmethodwindow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{51623DA2-D48F-42B1-9993-4BC6C7C51EF1}|ControlAguaPotable.csproj|c:\\users\\isdev\\documents\\c#\\aguapotable\\controlaguapotable\\paymentmethodwindow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{51623DA2-D48F-42B1-9993-4BC6C7C51EF1}|ControlAguaPotable.csproj|solutionrelative:paymentmethodwindow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{51623DA2-D48F-42B1-9993-4BC6C7C51EF1}|ControlAguaPotable.csproj|C:\\Users\\isDev\\Documents\\C#\\aguaPotable\\ControlAguaPotable\\buyingwindow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{51623DA2-D48F-42B1-9993-4BC6C7C51EF1}|ControlAguaPotable.csproj|solutionrelative:buyingwindow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{51623DA2-D48F-42B1-9993-4BC6C7C51EF1}|ControlAguaPotable.csproj|c:\\users\\isdev\\documents\\c#\\aguapotable\\controlaguapotable\\mainwindow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{51623DA2-D48F-42B1-9993-4BC6C7C51EF1}|ControlAguaPotable.csproj|solutionrelative:mainwindow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{51623DA2-D48F-42B1-9993-4BC6C7C51EF1}|ControlAguaPotable.csproj|c:\\users\\isdev\\documents\\c#\\aguapotable\\controlaguapotable\\model\\sell.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{51623DA2-D48F-42B1-9993-4BC6C7C51EF1}|ControlAguaPotable.csproj|solutionrelative:model\\sell.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{51623DA2-D48F-42B1-9993-4BC6C7C51EF1}|ControlAguaPotable.csproj|c:\\users\\isdev\\documents\\c#\\aguapotable\\controlaguapotable\\mainwindow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{51623DA2-D48F-42B1-9993-4BC6C7C51EF1}|ControlAguaPotable.csproj|solutionrelative:mainwindow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{51623DA2-D48F-42B1-9993-4BC6C7C51EF1}|ControlAguaPotable.csproj|C:\\Users\\isDev\\Documents\\C#\\aguaPotable\\ControlAguaPotable\\mainwindow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{51623DA2-D48F-42B1-9993-4BC6C7C51EF1}|ControlAguaPotable.csproj|solutionrelative:mainwindow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,7 +30,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
@@ -51,7 +47,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 3,
               "Title": "MainWindow.cs",
               "DocumentMoniker": "C:\\Users\\isDev\\Documents\\C#\\aguaPotable\\ControlAguaPotable\\MainWindow.cs",
               "RelativeDocumentMoniker": "MainWindow.cs",
@@ -60,45 +56,20 @@
               "ViewState": "AQIAAIABAAAAAAAAAAAuwJEBAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-16T16:19:27.895Z",
-              "IsPinned": true
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "BuyingWindow.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\isDev\\Documents\\C#\\aguaPotable\\ControlAguaPotable\\BuyingWindow.cs",
-              "RelativeDocumentMoniker": "BuyingWindow.cs",
-              "ToolTip": "C:\\Users\\isDev\\Documents\\C#\\aguaPotable\\ControlAguaPotable\\BuyingWindow.cs [Design]",
-              "RelativeToolTip": "BuyingWindow.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-30T21:29:05.219Z",
               "IsPinned": true,
-              "EditorCaption": " [Design]"
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "PaymentMethodWindow.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\isDev\\Documents\\C#\\aguaPotable\\ControlAguaPotable\\PaymentMethodWindow.cs",
-              "RelativeDocumentMoniker": "PaymentMethodWindow.cs",
-              "ToolTip": "C:\\Users\\isDev\\Documents\\C#\\aguaPotable\\ControlAguaPotable\\PaymentMethodWindow.cs [Design]",
-              "RelativeToolTip": "PaymentMethodWindow.cs [Design]",
+              "Title": "Sell.cs",
+              "DocumentMoniker": "C:\\Users\\isDev\\Documents\\C#\\aguaPotable\\ControlAguaPotable\\Model\\Sell.cs",
+              "RelativeDocumentMoniker": "Model\\Sell.cs",
+              "ToolTip": "C:\\Users\\isDev\\Documents\\C#\\aguaPotable\\ControlAguaPotable\\Model\\Sell.cs",
+              "RelativeToolTip": "Model\\Sell.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-01T12:49:47.545Z",
-              "IsPinned": true,
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "PaymentMethodWindow.cs",
-              "DocumentMoniker": "C:\\Users\\isDev\\Documents\\C#\\aguaPotable\\ControlAguaPotable\\PaymentMethodWindow.cs",
-              "RelativeDocumentMoniker": "PaymentMethodWindow.cs",
-              "ToolTip": "C:\\Users\\isDev\\Documents\\C#\\aguaPotable\\ControlAguaPotable\\PaymentMethodWindow.cs",
-              "RelativeToolTip": "PaymentMethodWindow.cs",
-              "ViewState": "AQIAACgAAAAAAAAAAAAQwAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-01T12:49:50.737Z",
+              "WhenOpened": "2024-07-01T13:24:40.937Z",
               "IsPinned": true,
               "EditorCaption": ""
             },
@@ -110,9 +81,9 @@
               "RelativeDocumentMoniker": "Controller\\PaymentMethodController.cs",
               "ToolTip": "C:\\Users\\isDev\\Documents\\C#\\aguaPotable\\ControlAguaPotable\\Controller\\PaymentMethodController.cs",
               "RelativeToolTip": "Controller\\PaymentMethodController.cs",
-              "ViewState": "AQIAAMMAAAAAAAAAAAAYwAAAAAAAAAAA",
+              "ViewState": "AQIAABsBAAAAAAAAAAAAADwBAABIAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-01T12:47:01.18Z",
+              "WhenOpened": "2024-07-01T13:28:46.645Z",
               "IsPinned": true,
               "EditorCaption": ""
             },
@@ -135,6 +106,19 @@
             {
               "$type": "Bookmark",
               "Name": "ST:4:0:{fabf9319-47eb-497e-b8f6-d9f73fba5f55}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "PaymentMethodWindow.cs",
+              "DocumentMoniker": "C:\\Users\\isDev\\Documents\\C#\\aguaPotable\\ControlAguaPotable\\PaymentMethodWindow.cs",
+              "RelativeDocumentMoniker": "PaymentMethodWindow.cs",
+              "ToolTip": "C:\\Users\\isDev\\Documents\\C#\\aguaPotable\\ControlAguaPotable\\PaymentMethodWindow.cs",
+              "RelativeToolTip": "PaymentMethodWindow.cs",
+              "ViewState": "AQIAADIAAAAAAAAAAAAgwEEAAAAQAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-01T17:23:58.931Z",
+              "EditorCaption": ""
             }
           ]
         }
