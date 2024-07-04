@@ -26,9 +26,10 @@ namespace ControlAguaPotable
 
         private MainWindowController mainWindowController;
         private CustomizeWindow customizeWindow;
-        private SettingsWindow settingsWindow;
+        private SettingsWindow settingsWindow = null;
         private PaymentMethodWindow paymentMethodWindow = null;
-        private BuyingWindow buyingWindow;
+        private SellingItemWindow buyingWindow;
+        private InventoryWindow inventoryWindow;
 
         private DataTable dt;
         private DataTable dtBill;
@@ -339,7 +340,6 @@ namespace ControlAguaPotable
             {
 
             }
-
         }
 
         private void SetupChart1(DataTable dataTable)
@@ -400,8 +400,20 @@ namespace ControlAguaPotable
 
         private void buy_Click(object sender, EventArgs e)
         {
-            buyingWindow = new BuyingWindow();
+            buyingWindow = new SellingItemWindow();
+
+            if (settingsWindow != null)
+            {
+                settingsWindow.ConstantsUpdated += buyingWindow.UpdateExchangeRate;
+            }
+
             buyingWindow.ShowDialog();
+        }
+
+        private void inventoryBtn_Click(object sender, EventArgs e)
+        {
+            inventoryWindow = new InventoryWindow();
+            inventoryWindow.ShowDialog();
         }
     }
 

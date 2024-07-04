@@ -27,7 +27,7 @@ namespace ControlAguaPotable
         public delegate void CleanDataTableHandler(object sender, CleanDataTableEventArgs e);
 
         public event CleanDataTableHandler CleanDataTable;
-        
+
         public PaymentMethodWindow()
         {
             InitializeComponent();
@@ -120,7 +120,7 @@ namespace ControlAguaPotable
         }
 
         private void bsWithdrawalNumeric_ValueChanged(object sender, EventArgs e)
-        { 
+        {
             decimal bs = bsWithdrawalNumeric.Value;
             decimal dollars = dollarsWithdrawalNumeric.Value;
             decimal bankBs = bankBsWithdrawalNumericUpDown.Value;
