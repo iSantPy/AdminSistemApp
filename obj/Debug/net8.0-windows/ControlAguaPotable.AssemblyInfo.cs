@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ControlAguaPotable")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+42820f73b83503595e81c1aa6ac818a293fc4710")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+94ed008e1a45bea0bea75b7f96732bc2ac591496")]
 [assembly: System.Reflection.AssemblyProductAttribute("ControlAguaPotable")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ControlAguaPotable")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

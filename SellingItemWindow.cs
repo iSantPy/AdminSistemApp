@@ -208,7 +208,7 @@ namespace ControlAguaPotable
 
         private void okBtn_Click(object sender, EventArgs e)
         {
-            if (substractedDataTable.Rows.Count != 0)
+            if (substractedDataTable != null && substractedDataTable.Rows.Count != 0)
             {
                 string mustBeZero = withdrawalTotalNumberLabel.Text.Split("/")[1];
                 decimal dollarAmount = Convert.ToDecimal(totalNumberLabel.Text.Split("/")[1]);

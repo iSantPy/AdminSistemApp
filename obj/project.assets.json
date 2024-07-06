@@ -220,7 +220,7 @@
           }
         }
       },
-      "PDFsharp/6.1.0": {
+      "PDFsharp/6.1.1": {
         "type": "package",
         "dependencies": {
           "Microsoft.Extensions.Logging": "6.0.0"
@@ -1040,10 +1040,10 @@
         "packageIcon.png"
       ]
     },
-    "PDFsharp/6.1.0": {
-      "sha512": "Tvc3mzowW3XG6AWk4gRi836Hy7FwqhXirpjQRH6JJll0vxiz5yWbAVjr0iV5yKRnPCwVbjOfwjfaMlwYzcPASg==",
+    "PDFsharp/6.1.1": {
+      "sha512": "wxBLG2f713s2Fp2rYxTCReNOcXT/4YX4h4TJW6y75xAEq2iaEjLDjZRgtXW1/IgadzyluIVmw4RqHz1rL4BYKg==",
       "type": "package",
-      "path": "pdfsharp/6.1.0",
+      "path": "pdfsharp/6.1.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1087,7 +1087,7 @@
         "lib/netstandard2.0/PdfSharp.xml",
         "lib/netstandard2.0/de/PdfSharp.Charting.resources.dll",
         "lib/netstandard2.0/de/PdfSharp.resources.dll",
-        "pdfsharp.6.1.0.nupkg.sha512",
+        "pdfsharp.6.1.1.nupkg.sha512",
         "pdfsharp.nuspec"
       ]
     },
@@ -1790,7 +1790,7 @@
   "projectFileDependencyGroups": {
     "net8.0-windows7.0": [
       "Newtonsoft.Json >= 13.0.3",
-      "PDFsharp >= 6.1.0",
+      "PDFsharp >= 6.1.1",
       "System.Data.SQLite >= 1.0.118",
       "WinForms.DataVisualization >= 1.9.2"
     ]
@@ -1846,7 +1846,7 @@
           },
           "PDFsharp": {
             "target": "Package",
-            "version": "[6.1.0, )"
+            "version": "[6.1.1, )"
           },
           "System.Data.SQLite": {
             "target": "Package",

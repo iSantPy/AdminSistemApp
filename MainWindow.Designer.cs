@@ -397,6 +397,7 @@
             reportsBtn.TabIndex = 1;
             toolTip1.SetToolTip(reportsBtn, "Generar reporte de ventas");
             reportsBtn.UseVisualStyleBackColor = true;
+            reportsBtn.Click += reportsBtn_Click;
             // 
             // inventoryBtn
             // 
@@ -573,7 +574,7 @@
             // 
             splitContainer2.Panel2.Controls.Add(tableLayoutPanel5);
             splitContainer2.Size = new Size(363, 460);
-            splitContainer2.SplitterDistance = 231;
+            splitContainer2.SplitterDistance = 230;
             splitContainer2.TabIndex = 0;
             // 
             // tableLayoutPanel12
@@ -586,13 +587,13 @@
             tableLayoutPanel12.Name = "tableLayoutPanel12";
             tableLayoutPanel12.RowCount = 1;
             tableLayoutPanel12.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel12.Size = new Size(363, 231);
+            tableLayoutPanel12.Size = new Size(363, 230);
             tableLayoutPanel12.TabIndex = 1;
             // 
             // monthCalendar
             // 
             monthCalendar.Anchor = AnchorStyles.None;
-            monthCalendar.Location = new Point(36, 12);
+            monthCalendar.Location = new Point(36, 11);
             monthCalendar.Name = "monthCalendar";
             monthCalendar.TabIndex = 0;
             // 
@@ -611,7 +612,7 @@
             tableLayoutPanel5.RowCount = 2;
             tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel5.Size = new Size(363, 225);
+            tableLayoutPanel5.Size = new Size(363, 226);
             tableLayoutPanel5.TabIndex = 0;
             // 
             // label6
@@ -630,7 +631,7 @@
             label7.Anchor = AnchorStyles.None;
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            label7.Location = new Point(18, 154);
+            label7.Location = new Point(18, 155);
             label7.Name = "label7";
             label7.Size = new Size(71, 28);
             label7.TabIndex = 1;
@@ -647,7 +648,7 @@
             // toTextBox
             // 
             toTextBox.Anchor = AnchorStyles.None;
-            toTextBox.Location = new Point(140, 151);
+            toTextBox.Location = new Point(140, 152);
             toTextBox.Name = "toTextBox";
             toTextBox.Size = new Size(191, 34);
             toTextBox.TabIndex = 3;
@@ -667,20 +668,20 @@
             // 
             splitContainer3.Panel2.Controls.Add(tableLayoutPanel6);
             splitContainer3.Size = new Size(363, 460);
-            splitContainer3.SplitterDistance = 101;
+            splitContainer3.SplitterDistance = 100;
             splitContainer3.TabIndex = 1;
             // 
             // label8
             // 
             label8.Anchor = AnchorStyles.None;
             label8.AutoSize = true;
-            label8.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label8.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label8.ForeColor = Color.Red;
-            label8.Location = new Point(94, 30);
+            label8.Location = new Point(18, 30);
             label8.Name = "label8";
-            label8.Size = new Size(186, 38);
+            label8.Size = new Size(325, 31);
             label8.TabIndex = 0;
-            label8.Text = "Control Caja:";
+            label8.Text = "Control Caja (Venta de agua):";
             // 
             // tableLayoutPanel6
             // 
@@ -703,7 +704,7 @@
             tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
             tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
             tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
-            tableLayoutPanel6.Size = new Size(363, 355);
+            tableLayoutPanel6.Size = new Size(363, 356);
             tableLayoutPanel6.TabIndex = 0;
             // 
             // label9
@@ -723,7 +724,7 @@
             label10.Anchor = AnchorStyles.None;
             label10.AutoSize = true;
             label10.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            label10.Location = new Point(49, 118);
+            label10.Location = new Point(49, 119);
             label10.Name = "label10";
             label10.Size = new Size(118, 28);
             label10.TabIndex = 1;
@@ -735,7 +736,7 @@
             label11.AutoSize = true;
             label11.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             label11.ForeColor = Color.FromArgb(0, 192, 0);
-            label11.Location = new Point(48, 206);
+            label11.Location = new Point(48, 208);
             label11.Name = "label11";
             label11.Size = new Size(120, 28);
             label11.TabIndex = 2;
@@ -746,7 +747,7 @@
             label12.Anchor = AnchorStyles.None;
             label12.AutoSize = true;
             label12.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            label12.Location = new Point(57, 295);
+            label12.Location = new Point(57, 297);
             label12.Name = "label12";
             label12.Size = new Size(102, 28);
             label12.TabIndex = 3;
@@ -769,7 +770,7 @@
             incomeBs.Anchor = AnchorStyles.None;
             incomeBs.AutoSize = true;
             incomeBs.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            incomeBs.Location = new Point(278, 118);
+            incomeBs.Location = new Point(278, 119);
             incomeBs.Name = "incomeBs";
             incomeBs.Size = new Size(24, 28);
             incomeBs.TabIndex = 5;
@@ -781,7 +782,7 @@
             withdrawalDollars.AutoSize = true;
             withdrawalDollars.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             withdrawalDollars.ForeColor = Color.FromArgb(0, 192, 0);
-            withdrawalDollars.Location = new Point(278, 206);
+            withdrawalDollars.Location = new Point(278, 208);
             withdrawalDollars.Name = "withdrawalDollars";
             withdrawalDollars.Size = new Size(24, 28);
             withdrawalDollars.TabIndex = 6;
@@ -792,7 +793,7 @@
             withdrawalBs.Anchor = AnchorStyles.None;
             withdrawalBs.AutoSize = true;
             withdrawalBs.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            withdrawalBs.Location = new Point(278, 295);
+            withdrawalBs.Location = new Point(278, 297);
             withdrawalBs.Name = "withdrawalBs";
             withdrawalBs.Size = new Size(24, 28);
             withdrawalBs.TabIndex = 7;

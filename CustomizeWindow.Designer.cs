@@ -83,10 +83,12 @@
             // 
             precioTotal.Anchor = AnchorStyles.Left;
             precioTotal.DecimalPlaces = 2;
+            precioTotal.Enabled = false;
             precioTotal.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
             precioTotal.Location = new Point(299, 399);
             precioTotal.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
             precioTotal.Name = "precioTotal";
+            precioTotal.ReadOnly = true;
             precioTotal.Size = new Size(150, 34);
             precioTotal.TabIndex = 13;
             precioTotal.TextAlign = HorizontalAlignment.Center;
@@ -107,10 +109,12 @@
             // 
             litros.Anchor = AnchorStyles.Left;
             litros.DecimalPlaces = 2;
+            litros.Enabled = false;
             litros.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
             litros.Location = new Point(299, 213);
             litros.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
             litros.Name = "litros";
+            litros.ReadOnly = true;
             litros.Size = new Size(150, 34);
             litros.TabIndex = 11;
             litros.TextAlign = HorizontalAlignment.Center;
@@ -165,11 +169,11 @@
             label4.Anchor = AnchorStyles.Right;
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            label4.Location = new Point(134, 308);
+            label4.Location = new Point(74, 308);
             label4.Name = "label4";
-            label4.Size = new Size(159, 28);
+            label4.Size = new Size(219, 28);
             label4.TabIndex = 3;
-            label4.Text = "Precio Unitario:";
+            label4.Text = "Precio Unitario (USD):";
             // 
             // label5
             // 

@@ -39,6 +39,7 @@ C:\Users\isDev\Documents\C#\aguaPotable\ControlAguaPotable\bin\Debug\net8.0-wind
 C:\Users\isDev\Documents\C#\aguaPotable\ControlAguaPotable\bin\Debug\net8.0-windows\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
 C:\Users\isDev\Documents\C#\aguaPotable\ControlAguaPotable\obj\Debug\net8.0-windows\ControlAguaPotable.csproj.AssemblyReference.cache
 C:\Users\isDev\Documents\C#\aguaPotable\ControlAguaPotable\obj\Debug\net8.0-windows\ControlAguaPotable.CustomizeWindow.resources
+C:\Users\isDev\Documents\C#\aguaPotable\ControlAguaPotable\obj\Debug\net8.0-windows\ControlAguaPotable.GeneratingReportWindow.resources
 C:\Users\isDev\Documents\C#\aguaPotable\ControlAguaPotable\obj\Debug\net8.0-windows\ControlAguaPotable.InventoryWindow.resources
 C:\Users\isDev\Documents\C#\aguaPotable\ControlAguaPotable\obj\Debug\net8.0-windows\ControlAguaPotable.MainWindow.resources
 C:\Users\isDev\Documents\C#\aguaPotable\ControlAguaPotable\obj\Debug\net8.0-windows\ControlAguaPotable.PaymentMethodWindow.resources

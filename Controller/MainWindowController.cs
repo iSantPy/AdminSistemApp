@@ -14,6 +14,8 @@ namespace ControlAguaPotable.Controller
     {
         string connectionString = ConfigurationManager.ConnectionStrings["Connection"].ConnectionString;
 
+        Bill bill = new Bill();
+
         public decimal BIGGEST = DynamicConfig.GetFloat("Biggest");
         public decimal MEDIUM = DynamicConfig.GetFloat("Medium");
         public decimal MEDIUMSMALL = DynamicConfig.GetFloat("MediumSmall");
@@ -144,8 +146,6 @@ namespace ControlAguaPotable.Controller
 
         public Bill CreateBill(string type, string supplier, bool bsChecked) 
         {
-            Bill bill = new Bill();
-
             bill.Date = DateTime.Now;
             bill.Type = type;
 
@@ -250,21 +250,25 @@ namespace ControlAguaPotable.Controller
             }
         }
 
-        public Dictionary<string, string> UpdatingIncomeAndWithdrawalCurrentDay() // change for using raw sqlite
+        public Dictionary<string, string> UpdatingIncomeAndWithdrawalCurrentDay()
         {
             Dictionary<string, string> dict = new Dictionary<string, string>();
 
             decimal totalIncomeBs = 0;
             decimal totalIncomeDollars = 0;
+            decimal totalIncomeBankBs = 0;
             decimal totalWithdrawalBs = 0;
             decimal totalWithdrawalDollars = 0;
+            decimal totalWithdrawalBankBs = 0;
 
             DateTime today = DateTime.Today.Date;
             List<int> sellIds = new List<int>();
             List<decimal> amountsIncomeBs = new List<decimal>();
             List<decimal> amountsIncomeDollars = new List<decimal>();
+            List<decimal> amountsIncomeBankBs = new List<decimal>();
             List<decimal> amountsWithdrawalBs = new List<decimal>();
             List<decimal> amountsWithdrawalDollars = new List<decimal>();
+            List<decimal> amountsWithdrawalBankBs = new List<decimal>();
 
             using (SQLiteConnection conn = new SQLiteConnection(connectionString))
             {
@@ -311,6 +315,18 @@ namespace ControlAguaPotable.Controller
                         }
                     }
 
+                    string queryIncomeBankBs = $"SELECT amount FROM IncomeBankBs WHERE sellID IN ({sellIdsString})";
+                    using (SQLiteCommand cmd = new SQLiteCommand(queryIncomeBankBs, conn))
+                    {
+                        using (SQLiteDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                amountsIncomeBankBs.Add(reader.GetDecimal(0));
+                            }
+                        }
+                    }
+
                     string queryWithdrawalBs = $"SELECT amount FROM WithdrawalBs WHERE sellID IN ({sellIdsString})";
                     using (SQLiteCommand cmd = new SQLiteCommand(queryWithdrawalBs, conn))
                     {
@@ -334,17 +350,31 @@ namespace ControlAguaPotable.Controller
                             }
                         }
                     }
+
+                    string queryWithdrawalBankBs = $"SELECT amount FROM WithdrawalBankBs WHERE sellID IN ({sellIdsString})";
+                    using (SQLiteCommand cmd = new SQLiteCommand(queryWithdrawalBankBs, conn))
+                    {
+                        using (SQLiteDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                amountsWithdrawalBankBs.Add(reader.GetDecimal(0));
+                            }
+                        }
+                    }
                 }
             }
 
             totalIncomeBs = amountsIncomeBs.Sum();
             totalIncomeDollars = amountsIncomeDollars.Sum();
+            totalIncomeBankBs = amountsIncomeBankBs.Sum();
             totalWithdrawalBs = amountsWithdrawalBs.Sum();
             totalWithdrawalDollars = amountsWithdrawalDollars.Sum();
+            totalWithdrawalBankBs = amountsWithdrawalBankBs.Sum();
 
-            string incomeBs = totalIncomeBs.ToString();
+            string incomeBs = (totalIncomeBs + totalIncomeBankBs).ToString();
             string incomeDollars = totalIncomeDollars.ToString();
-            string withdrawalBs = totalWithdrawalBs.ToString();
+            string withdrawalBs = (totalWithdrawalBs + totalWithdrawalBankBs).ToString();
             string withdrawalDollars = totalWithdrawalDollars.ToString();
 
             dict["incomeBs"] = incomeBs;
@@ -425,6 +455,8 @@ namespace ControlAguaPotable.Controller
         public void CleanDataTableBill()
         {
             _dataTableBill.Clear();
+            bill.ResetAttributes();
+            totalBill = 0;
         }
     }
 }

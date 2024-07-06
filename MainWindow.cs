@@ -5,6 +5,10 @@ using System.Configuration;
 using ControlAguaPotable.Model;
 using System.Windows.Forms.DataVisualization.Charting;
 using System.Globalization;
+using PdfSharp.Drawing;
+using PdfSharp.Pdf;
+using System.Diagnostics;
+using System.IO;
 
 namespace ControlAguaPotable
 {
@@ -30,6 +34,7 @@ namespace ControlAguaPotable
         private PaymentMethodWindow paymentMethodWindow = null;
         private SellingItemWindow buyingWindow;
         private InventoryWindow inventoryWindow;
+        private GeneratingReportWindow generationReportWindow;
 
         private DataTable dt;
         private DataTable dtBill;
@@ -69,17 +74,20 @@ namespace ControlAguaPotable
 
         private void AcceptBtn_Click(object sender, EventArgs e)
         {
-            string type = typeTextBox.Text;
-            string supplier = supplierTextBox.Text;
-            bool bsChecked = bsRadioBtn.Checked;
+            if (dtBill.Rows.Count > 0)
+            {
+                string type = typeTextBox.Text;
+                string supplier = supplierTextBox.Text;
+                bool bsChecked = bsRadioBtn.Checked;
 
-            Bill newBill = mainWindowController.CreateBill(type, supplier, bsChecked);
-            mainWindowController.InsertBillToDb(newBill);
+                Bill newBill = mainWindowController.CreateBill(type, supplier, bsChecked);
+                mainWindowController.InsertBillToDb(newBill);
 
-            mainWindowController.CleanDataTableBill();
+                mainWindowController.CleanDataTableBill();
 
-            typeTextBox.Clear();
-            supplierTextBox.Clear();
+                typeTextBox.Clear();
+                supplierTextBox.Clear();
+            }
         }
 
         private void AddBtn_Click(object sender, EventArgs e)
@@ -90,11 +98,14 @@ namespace ControlAguaPotable
             decimal unitaryPrice = unitaryPriceNumericUpDown.Value;
             string supplier = supplierTextBox.Text;
 
-            mainWindowController.AddRegiterDataTableBill(type, description, qty, unitaryPrice, supplier);
+            if (type != "" && description != "" && qty > 0 && unitaryPrice > 0 && supplier != "")
+            {
+                mainWindowController.AddRegiterDataTableBill(type, description, qty, unitaryPrice, supplier);
 
-            descriptionTextBox.Clear();
-            qtyNumericUpDown.Value = 0;
-            unitaryPriceNumericUpDown.Value = 0;
+                descriptionTextBox.Clear();
+                qtyNumericUpDown.Value = 0;
+                unitaryPriceNumericUpDown.Value = 0;
+            }
         }
 
         private void ClnBtnBill_Click(object sender, EventArgs e)
@@ -414,6 +425,12 @@ namespace ControlAguaPotable
         {
             inventoryWindow = new InventoryWindow();
             inventoryWindow.ShowDialog();
+        }
+
+        private void reportsBtn_Click(object sender, EventArgs e)
+        {
+            generationReportWindow = new GeneratingReportWindow();
+            generationReportWindow.ShowDialog();
         }
     }
 
