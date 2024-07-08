@@ -442,7 +442,7 @@
             label13.Name = "label13";
             label13.Size = new Size(216, 38);
             label13.TabIndex = 0;
-            label13.Text = "Total (USD/Bs):";
+            label13.Text = "Total (Bs/USD):";
             // 
             // label14
             // 
@@ -507,10 +507,10 @@
             // tabPage2
             // 
             tabPage2.Controls.Add(tableLayoutPanel10);
-            tabPage2.Location = new Point(4, 37);
+            tabPage2.Location = new Point(4, 29);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(1642, 977);
+            tabPage2.Size = new Size(1642, 985);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Resumen y Gastos";
             tabPage2.UseVisualStyleBackColor = true;
@@ -527,7 +527,7 @@
             tableLayoutPanel10.Name = "tableLayoutPanel10";
             tableLayoutPanel10.RowCount = 1;
             tableLayoutPanel10.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel10.Size = new Size(1636, 971);
+            tableLayoutPanel10.Size = new Size(1636, 979);
             tableLayoutPanel10.TabIndex = 2;
             // 
             // groupBox1
@@ -536,7 +536,7 @@
             groupBox1.Dock = DockStyle.Fill;
             groupBox1.Location = new Point(575, 3);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(1058, 965);
+            groupBox1.Size = new Size(1058, 973);
             groupBox1.TabIndex = 1;
             groupBox1.TabStop = false;
             groupBox1.Text = "Resumen:";
@@ -556,7 +556,7 @@
             tableLayoutPanel4.RowCount = 2;
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel4.Size = new Size(1052, 932);
+            tableLayoutPanel4.Size = new Size(1052, 940);
             tableLayoutPanel4.TabIndex = 0;
             // 
             // splitContainer2
@@ -573,8 +573,8 @@
             // splitContainer2.Panel2
             // 
             splitContainer2.Panel2.Controls.Add(tableLayoutPanel5);
-            splitContainer2.Size = new Size(363, 460);
-            splitContainer2.SplitterDistance = 230;
+            splitContainer2.Size = new Size(363, 464);
+            splitContainer2.SplitterDistance = 232;
             splitContainer2.TabIndex = 0;
             // 
             // tableLayoutPanel12
@@ -587,13 +587,13 @@
             tableLayoutPanel12.Name = "tableLayoutPanel12";
             tableLayoutPanel12.RowCount = 1;
             tableLayoutPanel12.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel12.Size = new Size(363, 230);
+            tableLayoutPanel12.Size = new Size(363, 232);
             tableLayoutPanel12.TabIndex = 1;
             // 
             // monthCalendar
             // 
             monthCalendar.Anchor = AnchorStyles.None;
-            monthCalendar.Location = new Point(36, 11);
+            monthCalendar.Location = new Point(36, 12);
             monthCalendar.Name = "monthCalendar";
             monthCalendar.TabIndex = 0;
             // 
@@ -612,7 +612,7 @@
             tableLayoutPanel5.RowCount = 2;
             tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel5.Size = new Size(363, 226);
+            tableLayoutPanel5.Size = new Size(363, 228);
             tableLayoutPanel5.TabIndex = 0;
             // 
             // label6
@@ -620,7 +620,7 @@
             label6.Anchor = AnchorStyles.None;
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            label6.Location = new Point(16, 42);
+            label6.Location = new Point(16, 43);
             label6.Name = "label6";
             label6.Size = new Size(75, 28);
             label6.TabIndex = 0;
@@ -631,7 +631,7 @@
             label7.Anchor = AnchorStyles.None;
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            label7.Location = new Point(18, 155);
+            label7.Location = new Point(18, 157);
             label7.Name = "label7";
             label7.Size = new Size(71, 28);
             label7.TabIndex = 1;
@@ -640,7 +640,7 @@
             // fromTextBox
             // 
             fromTextBox.Anchor = AnchorStyles.None;
-            fromTextBox.Location = new Point(140, 39);
+            fromTextBox.Location = new Point(140, 40);
             fromTextBox.Name = "fromTextBox";
             fromTextBox.Size = new Size(191, 34);
             fromTextBox.TabIndex = 2;
@@ -648,7 +648,7 @@
             // toTextBox
             // 
             toTextBox.Anchor = AnchorStyles.None;
-            toTextBox.Location = new Point(140, 152);
+            toTextBox.Location = new Point(140, 154);
             toTextBox.Name = "toTextBox";
             toTextBox.Size = new Size(191, 34);
             toTextBox.TabIndex = 3;
@@ -656,7 +656,7 @@
             // splitContainer3
             // 
             splitContainer3.Dock = DockStyle.Fill;
-            splitContainer3.Location = new Point(3, 469);
+            splitContainer3.Location = new Point(3, 473);
             splitContainer3.Name = "splitContainer3";
             splitContainer3.Orientation = Orientation.Horizontal;
             // 
@@ -667,7 +667,7 @@
             // splitContainer3.Panel2
             // 
             splitContainer3.Panel2.Controls.Add(tableLayoutPanel6);
-            splitContainer3.Size = new Size(363, 460);
+            splitContainer3.Size = new Size(363, 464);
             splitContainer3.SplitterDistance = 100;
             splitContainer3.TabIndex = 1;
             // 
@@ -704,7 +704,7 @@
             tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
             tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
             tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
-            tableLayoutPanel6.Size = new Size(363, 356);
+            tableLayoutPanel6.Size = new Size(363, 360);
             tableLayoutPanel6.TabIndex = 0;
             // 
             // label9
@@ -713,7 +713,7 @@
             label9.AutoSize = true;
             label9.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             label9.ForeColor = Color.FromArgb(0, 192, 0);
-            label9.Location = new Point(40, 30);
+            label9.Location = new Point(40, 31);
             label9.Name = "label9";
             label9.Size = new Size(136, 28);
             label9.TabIndex = 0;
@@ -724,7 +724,7 @@
             label10.Anchor = AnchorStyles.None;
             label10.AutoSize = true;
             label10.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            label10.Location = new Point(49, 119);
+            label10.Location = new Point(49, 121);
             label10.Name = "label10";
             label10.Size = new Size(118, 28);
             label10.TabIndex = 1;
@@ -736,7 +736,7 @@
             label11.AutoSize = true;
             label11.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             label11.ForeColor = Color.FromArgb(0, 192, 0);
-            label11.Location = new Point(48, 208);
+            label11.Location = new Point(48, 211);
             label11.Name = "label11";
             label11.Size = new Size(120, 28);
             label11.TabIndex = 2;
@@ -747,7 +747,7 @@
             label12.Anchor = AnchorStyles.None;
             label12.AutoSize = true;
             label12.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            label12.Location = new Point(57, 297);
+            label12.Location = new Point(57, 301);
             label12.Name = "label12";
             label12.Size = new Size(102, 28);
             label12.TabIndex = 3;
@@ -759,7 +759,7 @@
             incomeDollars.AutoSize = true;
             incomeDollars.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             incomeDollars.ForeColor = Color.FromArgb(0, 192, 0);
-            incomeDollars.Location = new Point(278, 30);
+            incomeDollars.Location = new Point(278, 31);
             incomeDollars.Name = "incomeDollars";
             incomeDollars.Size = new Size(24, 28);
             incomeDollars.TabIndex = 4;
@@ -770,7 +770,7 @@
             incomeBs.Anchor = AnchorStyles.None;
             incomeBs.AutoSize = true;
             incomeBs.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            incomeBs.Location = new Point(278, 119);
+            incomeBs.Location = new Point(278, 121);
             incomeBs.Name = "incomeBs";
             incomeBs.Size = new Size(24, 28);
             incomeBs.TabIndex = 5;
@@ -782,7 +782,7 @@
             withdrawalDollars.AutoSize = true;
             withdrawalDollars.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             withdrawalDollars.ForeColor = Color.FromArgb(0, 192, 0);
-            withdrawalDollars.Location = new Point(278, 208);
+            withdrawalDollars.Location = new Point(278, 211);
             withdrawalDollars.Name = "withdrawalDollars";
             withdrawalDollars.Size = new Size(24, 28);
             withdrawalDollars.TabIndex = 6;
@@ -793,7 +793,7 @@
             withdrawalBs.Anchor = AnchorStyles.None;
             withdrawalBs.AutoSize = true;
             withdrawalBs.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            withdrawalBs.Location = new Point(278, 297);
+            withdrawalBs.Location = new Point(278, 301);
             withdrawalBs.Name = "withdrawalBs";
             withdrawalBs.Size = new Size(24, 28);
             withdrawalBs.TabIndex = 7;
@@ -812,7 +812,7 @@
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             chart1.Series.Add(series1);
-            chart1.Size = new Size(677, 460);
+            chart1.Size = new Size(677, 464);
             chart1.TabIndex = 2;
             chart1.Text = "chart1";
             // 
@@ -823,13 +823,13 @@
             chart2.Dock = DockStyle.Fill;
             legend2.Name = "Legend1";
             chart2.Legends.Add(legend2);
-            chart2.Location = new Point(372, 469);
+            chart2.Location = new Point(372, 473);
             chart2.Name = "chart2";
             series2.ChartArea = "ChartArea1";
             series2.Legend = "Legend1";
             series2.Name = "Series1";
             chart2.Series.Add(series2);
-            chart2.Size = new Size(677, 460);
+            chart2.Size = new Size(677, 464);
             chart2.TabIndex = 3;
             chart2.Text = "chart2";
             // 
@@ -841,7 +841,7 @@
             groupBox2.Dock = DockStyle.Fill;
             groupBox2.Location = new Point(3, 3);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(566, 965);
+            groupBox2.Size = new Size(566, 973);
             groupBox2.TabIndex = 2;
             groupBox2.TabStop = false;
             groupBox2.Text = "Gasto Detallado:";
@@ -858,7 +858,7 @@
             tableLayoutPanel8.RowCount = 2;
             tableLayoutPanel8.RowStyles.Add(new RowStyle(SizeType.Percent, 73.14629F));
             tableLayoutPanel8.RowStyles.Add(new RowStyle(SizeType.Percent, 26.8537083F));
-            tableLayoutPanel8.Size = new Size(554, 499);
+            tableLayoutPanel8.Size = new Size(554, 507);
             tableLayoutPanel8.TabIndex = 3;
             // 
             // dataGridView1
@@ -884,7 +884,7 @@
             dataGridView1.Location = new Point(3, 3);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(548, 359);
+            dataGridView1.Size = new Size(548, 364);
             dataGridView1.TabIndex = 0;
             // 
             // tableLayoutPanel9
@@ -893,7 +893,7 @@
             tableLayoutPanel9.ColumnCount = 1;
             tableLayoutPanel9.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel9.Controls.Add(acceptBtn, 0, 0);
-            tableLayoutPanel9.Location = new Point(129, 375);
+            tableLayoutPanel9.Location = new Point(129, 381);
             tableLayoutPanel9.Name = "tableLayoutPanel9";
             tableLayoutPanel9.RowCount = 1;
             tableLayoutPanel9.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
@@ -1018,8 +1018,8 @@
             // unitaryPriceNumericUpDown
             // 
             unitaryPriceNumericUpDown.Anchor = AnchorStyles.None;
-            unitaryPriceNumericUpDown.DecimalPlaces = 2;
-            unitaryPriceNumericUpDown.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
+            unitaryPriceNumericUpDown.DecimalPlaces = 3;
+            unitaryPriceNumericUpDown.Increment = new decimal(new int[] { 1, 0, 0, 196608 });
             unitaryPriceNumericUpDown.Location = new Point(283, 163);
             unitaryPriceNumericUpDown.Maximum = new decimal(new int[] { 100000000, 0, 0, 0 });
             unitaryPriceNumericUpDown.Name = "unitaryPriceNumericUpDown";
@@ -1122,6 +1122,7 @@
             Name = "MainWindow";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Control Agua Potable";
+            WindowState = FormWindowState.Maximized;
             tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
             splitContainer1.Panel1.ResumeLayout(false);

@@ -222,8 +222,8 @@
             // biggest
             // 
             biggest.Anchor = AnchorStyles.Left;
-            biggest.DecimalPlaces = 2;
-            biggest.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
+            biggest.DecimalPlaces = 3;
+            biggest.Increment = new decimal(new int[] { 1, 0, 0, 196608 });
             biggest.Location = new Point(346, 6);
             biggest.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
             biggest.Name = "biggest";
@@ -234,8 +234,8 @@
             // medium
             // 
             medium.Anchor = AnchorStyles.Left;
-            medium.DecimalPlaces = 2;
-            medium.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
+            medium.DecimalPlaces = 3;
+            medium.Increment = new decimal(new int[] { 1, 0, 0, 196608 });
             medium.Location = new Point(346, 53);
             medium.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
             medium.Name = "medium";
@@ -246,8 +246,8 @@
             // mediumSmall
             // 
             mediumSmall.Anchor = AnchorStyles.Left;
-            mediumSmall.DecimalPlaces = 2;
-            mediumSmall.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
+            mediumSmall.DecimalPlaces = 3;
+            mediumSmall.Increment = new decimal(new int[] { 1, 0, 0, 196608 });
             mediumSmall.Location = new Point(346, 100);
             mediumSmall.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
             mediumSmall.Name = "mediumSmall";
@@ -258,8 +258,8 @@
             // smallest
             // 
             smallest.Anchor = AnchorStyles.Left;
-            smallest.DecimalPlaces = 2;
-            smallest.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
+            smallest.DecimalPlaces = 3;
+            smallest.Increment = new decimal(new int[] { 1, 0, 0, 196608 });
             smallest.Location = new Point(346, 147);
             smallest.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
             smallest.Name = "smallest";
@@ -270,8 +270,8 @@
             // priceBiggest
             // 
             priceBiggest.Anchor = AnchorStyles.Left;
-            priceBiggest.DecimalPlaces = 2;
-            priceBiggest.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
+            priceBiggest.DecimalPlaces = 3;
+            priceBiggest.Increment = new decimal(new int[] { 1, 0, 0, 196608 });
             priceBiggest.Location = new Point(346, 194);
             priceBiggest.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
             priceBiggest.Name = "priceBiggest";
@@ -282,8 +282,8 @@
             // priceMedium
             // 
             priceMedium.Anchor = AnchorStyles.Left;
-            priceMedium.DecimalPlaces = 2;
-            priceMedium.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
+            priceMedium.DecimalPlaces = 3;
+            priceMedium.Increment = new decimal(new int[] { 1, 0, 0, 196608 });
             priceMedium.Location = new Point(346, 241);
             priceMedium.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
             priceMedium.Name = "priceMedium";
@@ -294,8 +294,8 @@
             // priceMediumSmall
             // 
             priceMediumSmall.Anchor = AnchorStyles.Left;
-            priceMediumSmall.DecimalPlaces = 2;
-            priceMediumSmall.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
+            priceMediumSmall.DecimalPlaces = 3;
+            priceMediumSmall.Increment = new decimal(new int[] { 1, 0, 0, 196608 });
             priceMediumSmall.Location = new Point(346, 288);
             priceMediumSmall.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
             priceMediumSmall.Name = "priceMediumSmall";
@@ -306,8 +306,8 @@
             // priceSmallest
             // 
             priceSmallest.Anchor = AnchorStyles.Left;
-            priceSmallest.DecimalPlaces = 2;
-            priceSmallest.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
+            priceSmallest.DecimalPlaces = 3;
+            priceSmallest.Increment = new decimal(new int[] { 1, 0, 0, 196608 });
             priceSmallest.Location = new Point(346, 335);
             priceSmallest.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
             priceSmallest.Name = "priceSmallest";
@@ -318,8 +318,8 @@
             // exchangeRate
             // 
             exchangeRate.Anchor = AnchorStyles.Left;
-            exchangeRate.DecimalPlaces = 2;
-            exchangeRate.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
+            exchangeRate.DecimalPlaces = 3;
+            exchangeRate.Increment = new decimal(new int[] { 1, 0, 0, 196608 });
             exchangeRate.Location = new Point(346, 382);
             exchangeRate.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
             exchangeRate.Name = "exchangeRate";
@@ -330,8 +330,8 @@
             // liters
             // 
             liters.Anchor = AnchorStyles.Left;
-            liters.DecimalPlaces = 2;
-            liters.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
+            liters.DecimalPlaces = 3;
+            liters.Increment = new decimal(new int[] { 1, 0, 0, 196608 });
             liters.Location = new Point(346, 430);
             liters.Maximum = new decimal(new int[] { 100000000, 0, 0, 0 });
             liters.Name = "liters";

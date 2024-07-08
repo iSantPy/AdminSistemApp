@@ -130,11 +130,12 @@
             money.Anchor = AnchorStyles.None;
             money.AutoSize = true;
             money.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
-            money.Location = new Point(93, 78);
+            money.ForeColor = Color.Red;
+            money.Location = new Point(48, 78);
             money.Name = "money";
-            money.Size = new Size(50, 31);
+            money.Size = new Size(140, 31);
             money.TabIndex = 1;
-            money.Text = "0/0";
+            money.Text = "0.000/0.000";
             // 
             // tableLayoutPanel3
             // 
@@ -160,8 +161,8 @@
             // bsNumeric
             // 
             bsNumeric.Anchor = AnchorStyles.None;
-            bsNumeric.DecimalPlaces = 2;
-            bsNumeric.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
+            bsNumeric.DecimalPlaces = 3;
+            bsNumeric.Increment = new decimal(new int[] { 1, 0, 0, 196608 });
             bsNumeric.Location = new Point(180, 3);
             bsNumeric.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
             bsNumeric.Name = "bsNumeric";
@@ -173,8 +174,8 @@
             // dollarsNumeric
             // 
             dollarsNumeric.Anchor = AnchorStyles.None;
-            dollarsNumeric.DecimalPlaces = 2;
-            dollarsNumeric.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
+            dollarsNumeric.DecimalPlaces = 3;
+            dollarsNumeric.Increment = new decimal(new int[] { 1, 0, 0, 196608 });
             dollarsNumeric.Location = new Point(180, 44);
             dollarsNumeric.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
             dollarsNumeric.Name = "dollarsNumeric";
@@ -218,8 +219,8 @@
             // bankBsNumericUpDown
             // 
             bankBsNumericUpDown.Anchor = AnchorStyles.None;
-            bankBsNumericUpDown.DecimalPlaces = 2;
-            bankBsNumericUpDown.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
+            bankBsNumericUpDown.DecimalPlaces = 3;
+            bankBsNumericUpDown.Increment = new decimal(new int[] { 1, 0, 0, 196608 });
             bankBsNumericUpDown.Location = new Point(180, 86);
             bankBsNumericUpDown.Maximum = new decimal(new int[] { 1000000, 0, 0, 0 });
             bankBsNumericUpDown.Name = "bankBsNumericUpDown";
@@ -271,11 +272,12 @@
             withdrawalMoney.Anchor = AnchorStyles.None;
             withdrawalMoney.AutoSize = true;
             withdrawalMoney.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
-            withdrawalMoney.Location = new Point(93, 78);
+            withdrawalMoney.ForeColor = Color.Red;
+            withdrawalMoney.Location = new Point(48, 78);
             withdrawalMoney.Name = "withdrawalMoney";
-            withdrawalMoney.Size = new Size(50, 31);
+            withdrawalMoney.Size = new Size(140, 31);
             withdrawalMoney.TabIndex = 1;
-            withdrawalMoney.Text = "0/0";
+            withdrawalMoney.Text = "0.000/0.000";
             // 
             // tableLayoutPanel4
             // 
@@ -301,8 +303,8 @@
             // bsWithdrawalNumeric
             // 
             bsWithdrawalNumeric.Anchor = AnchorStyles.None;
-            bsWithdrawalNumeric.DecimalPlaces = 2;
-            bsWithdrawalNumeric.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
+            bsWithdrawalNumeric.DecimalPlaces = 3;
+            bsWithdrawalNumeric.Increment = new decimal(new int[] { 1, 0, 0, 196608 });
             bsWithdrawalNumeric.Location = new Point(180, 3);
             bsWithdrawalNumeric.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
             bsWithdrawalNumeric.Name = "bsWithdrawalNumeric";
@@ -314,8 +316,8 @@
             // dollarsWithdrawalNumeric
             // 
             dollarsWithdrawalNumeric.Anchor = AnchorStyles.None;
-            dollarsWithdrawalNumeric.DecimalPlaces = 2;
-            dollarsWithdrawalNumeric.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
+            dollarsWithdrawalNumeric.DecimalPlaces = 3;
+            dollarsWithdrawalNumeric.Increment = new decimal(new int[] { 1, 0, 0, 196608 });
             dollarsWithdrawalNumeric.Location = new Point(180, 44);
             dollarsWithdrawalNumeric.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
             dollarsWithdrawalNumeric.Name = "dollarsWithdrawalNumeric";
@@ -359,8 +361,8 @@
             // bankBsWithdrawalNumericUpDown
             // 
             bankBsWithdrawalNumericUpDown.Anchor = AnchorStyles.None;
-            bankBsWithdrawalNumericUpDown.DecimalPlaces = 2;
-            bankBsWithdrawalNumericUpDown.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
+            bankBsWithdrawalNumericUpDown.DecimalPlaces = 3;
+            bankBsWithdrawalNumericUpDown.Increment = new decimal(new int[] { 1, 0, 0, 196608 });
             bankBsWithdrawalNumericUpDown.Location = new Point(180, 86);
             bankBsWithdrawalNumericUpDown.Maximum = new decimal(new int[] { 1000000, 0, 0, 0 });
             bankBsWithdrawalNumericUpDown.Name = "bankBsWithdrawalNumericUpDown";

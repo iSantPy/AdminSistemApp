@@ -61,18 +61,29 @@ namespace ControlAguaPotable
             decimal oLiters = liters.Value;
             decimal oExchangeRate = exchangeRate.Value;
 
-            DynamicConfig.SetFloat("Biggest", oBiggest);
-            DynamicConfig.SetFloat("Medium", oMedium);
-            DynamicConfig.SetFloat("MediumSmall", oMediumSmall);
-            DynamicConfig.SetFloat("Smallest", oSmallest);
-            DynamicConfig.SetFloat("BiggestPrice", oPriceBiggest);
-            DynamicConfig.SetFloat("MediumPrice", oPriceMedium);
-            DynamicConfig.SetFloat("MediumSmallPrice", oPriceMediumSmall);
-            DynamicConfig.SetFloat("SmallestPrice", oPriceSmallest);
-            DynamicConfig.SetFloat("Liters", oLiters);
-            DynamicConfig.SetFloat("ExchangeRate", oExchangeRate);
+            DynamicConfig.SetFloat("Biggest", Math.Round(oBiggest, 3));
+            DynamicConfig.SetFloat("Medium", Math.Round(oMedium, 3));
+            DynamicConfig.SetFloat("MediumSmall", Math.Round(oMediumSmall, 3));
+            DynamicConfig.SetFloat("Smallest", Math.Round(oSmallest, 3));
+            DynamicConfig.SetFloat("BiggestPrice", Math.Round(oPriceBiggest, 3));
+            DynamicConfig.SetFloat("MediumPrice", Math.Round(oPriceMedium, 3));
+            DynamicConfig.SetFloat("MediumSmallPrice", Math.Round(oPriceMediumSmall, 3));
+            DynamicConfig.SetFloat("SmallestPrice", Math.Round(oPriceSmallest, 3));
+            DynamicConfig.SetFloat("Liters", Math.Round(oLiters, 3));
+            DynamicConfig.SetFloat("ExchangeRate", Math.Round(oExchangeRate, 3));
 
-            ConstantsUpdateEventArgs args = new ConstantsUpdateEventArgs(oBiggest, oMedium, oMediumSmall, oSmallest, oPriceBiggest, oPriceMedium, oPriceMediumSmall, oPriceSmallest, oLiters, oExchangeRate);
+            ConstantsUpdateEventArgs args = new ConstantsUpdateEventArgs(
+                Math.Round(oBiggest, 3), 
+                Math.Round(oMedium, 3), 
+                Math.Round(oMediumSmall, 3), 
+                Math.Round(oSmallest, 3), 
+                Math.Round(oPriceBiggest, 3), 
+                Math.Round(oPriceMedium, 3), 
+                Math.Round(oPriceMediumSmall, 3), 
+                Math.Round(oPriceSmallest, 3), 
+                Math.Round(oLiters, 3), 
+                Math.Round(oExchangeRate, 3)
+            );
 
             ConstantsUpdated?.Invoke(this, args);
             this.Close();
@@ -130,7 +141,5 @@ namespace ControlAguaPotable
         public decimal PriceSmalllest { get { return oPriceSmallest; } }
         public decimal Liters { get { return oLiters; } }
         public decimal ExchangeRate { get { return oExchangeRate; } }
-        
-
     }
 }

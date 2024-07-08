@@ -272,8 +272,8 @@
             // priceNumericUpDown
             // 
             priceNumericUpDown.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            priceNumericUpDown.DecimalPlaces = 2;
-            priceNumericUpDown.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
+            priceNumericUpDown.DecimalPlaces = 3;
+            priceNumericUpDown.Increment = new decimal(new int[] { 1, 0, 0, 196608 });
             priceNumericUpDown.Location = new Point(186, 198);
             priceNumericUpDown.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
             priceNumericUpDown.Name = "priceNumericUpDown";

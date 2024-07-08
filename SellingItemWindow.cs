@@ -78,7 +78,7 @@ namespace ControlAguaPotable
                 decimal resultDollars = resultBs / EXCHANGERATE;
                 withdrawalDollars = resultDollars;
 
-                withdrawalTotalNumberLabel.Text = Math.Round(resultBs, 2).ToString() + "/" + Math.Round(resultDollars, 2).ToString();
+                withdrawalTotalNumberLabel.Text = Math.Round(resultBs, 3).ToString() + "/" + Math.Round(resultDollars, 3).ToString();
             }
         }
 
@@ -104,7 +104,7 @@ namespace ControlAguaPotable
                 resultWDollars = resultWBs / EXCHANGERATE;
             }
 
-            withdrawalTotalNumberLabel.Text = Math.Round(resultWBs, 2).ToString() + "/" + Math.Round(resultWDollars, 2).ToString();
+            withdrawalTotalNumberLabel.Text = Math.Round(resultWBs, 3).ToString() + "/" + Math.Round(resultWDollars, 3).ToString();
         }
 
         private void CleanItemData()
@@ -132,8 +132,8 @@ namespace ControlAguaPotable
 
             searchTextBox.Clear();
 
-            totalNumberLabel.Text = "0.00/0.00";
-            withdrawalTotalNumberLabel.Text = "0.00/0.00";
+            totalNumberLabel.Text = "0.000/0.000";
+            withdrawalTotalNumberLabel.Text = "0.000/0.000";
 
             buyItemsDataTable.Clear();
             sellDataGridView.DataSource = buyItemsDataTable;
@@ -221,7 +221,7 @@ namespace ControlAguaPotable
                 decimal withdrawalBs = wBsNumericUpDown.Value;
                 decimal withdrawalDollar = wDollarsNumericUpDown.Value;
 
-                if ((mustBeZero == "0" || mustBeZero == "0.00" || mustBeZero == "0.0") && (bs != 0 || dollars != 0 || bankBs != 0))
+                if ((mustBeZero == "0" || mustBeZero == "0.000" || mustBeZero == "0.00" || mustBeZero == "0.0") && (bs != 0 || dollars != 0 || bankBs != 0))
                 {
                     SellItems newSell = sellingItemsController.CreateSellAndDetails(buyItemsDataTable, bs, bankBs, dollars, bankBsWithdrawal, withdrawalBs, withdrawalDollar, dollarAmount, EXCHANGERATE);
                     sellingItemsController.RegisterNewSell(newSell);

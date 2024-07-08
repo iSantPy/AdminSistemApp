@@ -61,7 +61,7 @@ namespace ControlAguaPotable
             decimal withdrawalBs = bsWithdrawalNumeric.Value;
             decimal withdrawalDollar = dollarsWithdrawalNumeric.Value;
 
-            if ((mustBeZero == "0" || mustBeZero == "0.00" || mustBeZero == "0.0") && (bs != 0 || dollars != 0 || bankBs != 0))
+            if ((mustBeZero == "0" || mustBeZero == "0.000" || mustBeZero == "0.00" || mustBeZero == "0.0") && (bs != 0 || dollars != 0 || bankBs != 0))
             {
                 Sell newSell = paymentMethodController.CreateSellAndDetails(dt, bs, bankBs, dollars, bankBsWithdrawal, withdrawalBs, withdrawalDollar, dollarAmount, EXCHANGERATE);
                 paymentMethodController.RegisterNewSell(newSell);
@@ -84,7 +84,7 @@ namespace ControlAguaPotable
             dollarsWithdrawalNumeric.Value = 0;
             bankBsWithdrawalNumericUpDown.Value = 0;
 
-            withdrawalMoney.Text = "0/0";
+            withdrawalMoney.Text = "0.000/0.000";
         }
 
         public void UpdateMoney(object sender, MoneyUpdateEventArgs e)
@@ -115,7 +115,7 @@ namespace ControlAguaPotable
                 decimal resultDollars = resultBs / EXCHANGERATE;
                 withdrawalDollars = resultDollars;
 
-                withdrawalMoney.Text = Math.Round(resultBs, 2).ToString() + "/" + Math.Round(resultDollars, 2).ToString();
+                withdrawalMoney.Text = Math.Round(resultBs, 3).ToString() + "/" + Math.Round(resultDollars, 3).ToString();
             }
         }
 
@@ -141,7 +141,7 @@ namespace ControlAguaPotable
                 resultWDollars = resultWBs / EXCHANGERATE;
             }
 
-            withdrawalMoney.Text = Math.Round(resultWBs, 2).ToString() + "/" + Math.Round(resultWDollars, 2).ToString();
+            withdrawalMoney.Text = Math.Round(resultWBs, 3).ToString() + "/" + Math.Round(resultWDollars, 3).ToString();
         }
     }
 

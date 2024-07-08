@@ -76,17 +76,25 @@ namespace ControlAguaPotable
         {
             if (dtBill.Rows.Count > 0)
             {
-                string type = typeTextBox.Text;
-                string supplier = supplierTextBox.Text;
-                bool bsChecked = bsRadioBtn.Checked;
+                try
+                {
+                    string type = typeTextBox.Text;
+                    string supplier = supplierTextBox.Text;
+                    bool bsChecked = bsRadioBtn.Checked;
 
-                Bill newBill = mainWindowController.CreateBill(type, supplier, bsChecked);
-                mainWindowController.InsertBillToDb(newBill);
+                    Bill newBill = mainWindowController.CreateBill(type, supplier, bsChecked);
+                    mainWindowController.InsertBillToDb(newBill);
 
-                mainWindowController.CleanDataTableBill();
+                    mainWindowController.CleanDataTableBill();
 
-                typeTextBox.Clear();
-                supplierTextBox.Clear();
+                    typeTextBox.Clear();
+                    supplierTextBox.Clear();
+                }
+
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
         }
 
@@ -117,6 +125,8 @@ namespace ControlAguaPotable
             supplierTextBox.Clear();
             fromTextBox.Clear();
             toTextBox.Clear();
+
+            dtBill.Clear();
         }
 
         private void RegisterBtn_Click(object sender, EventArgs e)
@@ -277,11 +287,11 @@ namespace ControlAguaPotable
 
             decimal ventaBs = decimal.Parse(strings[0]);
             decimal ventaTotalBs = ventaBs + results["precioBs"];
-            decimal roundedVentaBs = Math.Round(ventaTotalBs, 2);
+            decimal roundedVentaBs = Math.Round(ventaTotalBs, 3);
 
             decimal ventaUSD = decimal.Parse(strings[1]);
             decimal ventaTotalUSD = ventaUSD + results["precioUSD"];
-            decimal roundedVentaUSD = Math.Round(ventaTotalUSD, 2);
+            decimal roundedVentaUSD = Math.Round(ventaTotalUSD, 3);
 
             string bs = roundedVentaBs.ToString();
             string usd = roundedVentaUSD.ToString();

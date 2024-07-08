@@ -149,6 +149,7 @@ namespace ControlAguaPotable.Controller
             bill.Date = DateTime.Now;
             bill.Type = type;
 
+            
             if (bsChecked)
             {
                 foreach (DataRow row in _dataTableBill.Rows)
@@ -165,11 +166,12 @@ namespace ControlAguaPotable.Controller
                     totalBill += Math.Round(totalPerItem, 2);
                 }
             }
-
+          
             bill.Amount = totalBill;
             bill.ExchangeRate = EXCHANGERATE;
             bill.Supplier = supplier;
 
+            
             if (bsChecked)
             {
                 foreach (DataRow row in _dataTableBill.Rows)
@@ -198,7 +200,7 @@ namespace ControlAguaPotable.Controller
                     bill.Details.Add(billDetail);
                 }
             }
-
+            
             return bill;
         }
 
